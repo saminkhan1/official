@@ -26,6 +26,7 @@
 }
 
 html {
+  font-size: 14px;
   scroll-behavior: smooth;
 }
 
@@ -36,7 +37,7 @@ body {
     center / cover fixed no-repeat;
   font-family: "Nunito Sans", Arial, sans-serif;
   font-weight: 300;
-  font-size: clamp(15px, 1.6vw, 18px);
+  font-size: 1rem;
   text-rendering: optimizeLegibility;
 }
 
@@ -91,17 +92,37 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem var(--gutter);
+  padding: 0rem var(--gutter);
   background: var(--paper);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 0;
   font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1;
 }
 
+.site-nav::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    #a47a1e,
+    #d3a84c,
+    #ffec94,
+    #e6be69,
+    #ffd87c,
+    #b58f3e,
+    #956d13
+  );
+  content: "";
+}
+
 .site-nav nav {
   display: flex;
-  gap: clamp(14px, 2.4vw, 34px);
+  gap: clamp(1.5rem, 2.4vw, 3rem);
 }
 
 .site-nav a {
@@ -119,14 +140,13 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: clamp(2.8rem, 3.4vw, 3.8rem);
+  height: 4rem;
 }
 
 .nav-mark img {
   display: block;
   height: 100%;
   width: auto;
-  transform: scale(1.2);
 }
 
 main {
