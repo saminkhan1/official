@@ -173,6 +173,8 @@ async function loadLiveSets(showList) {
       icon.className = "live-card-youtube-icon"
       icon.src = "icon/youtube-white.png"
       icon.alt = ""
+      icon.width = 21
+      icon.height = 21
 
       const youtubeIcon = document.createElement("span")
       youtubeIcon.className = "live-set-youtube"
@@ -221,4 +223,39 @@ document.addEventListener("click", (event) => {
       },
     }),
   )
+})
+
+// Progressive background loader: defers heavy off-screen backgrounds until near viewport
+const deferredSections = document.querySelectorAll("#listen, #booking")
+if ("IntersectionObserver" in window) {
+  const bgObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-loaded")
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { rootMargin: "600px 0px" },
+  )
+  deferredSections.forEach((section) => bgObserver.observe(section))
+} else {
+  deferredSections.forEach((section) => section.classList.add("is-loaded"))
+}
+
+// Immediate load on navigation link interaction
+document.querySelectorAll('.site-nav a[href^="#"]').forEach((link) => {
+  const handler = () => {
+    const href = link.getAttribute("href")
+    if (href && href.length > 1) {
+      const target = document.querySelector(href)
+      if (target?.classList.contains("content-section")) {
+        target.classList.add("is-loaded")
+      }
+    }
+  }
+  link.addEventListener("mouseenter", handler, { passive: true })
+  link.addEventListener("focus", handler, { passive: true })
+  link.addEventListener("click", handler)
 })

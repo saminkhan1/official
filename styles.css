@@ -1,6 +1,56 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Della+Respira&display=swap");
+@font-face {
+  font-family: "Cinzel";
+  src: url("./fonts/cinzel-core.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+00A0, U+2013-2014, U+2018-2019, U+201C-201D, U+2026;
+}
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("./fonts/cinzel-ext.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+00A1-0107, U+010A-0113, U+0116-011B, U+011E-0123, U+0126-0127, U+012A-012B, U+012E-0133, U+0136-0137, U+0139-0148, U+014A-014D, U+0150-015B, U+015E-0167, U+016A-016B, U+016E-017E;
+}
+
+@font-face {
+  font-family: "Cinzel Decorative";
+  src: url("./fonts/cinzel-decorative-bold-core.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+2013-2014, U+2018-2019, U+201C-201D, U+2026;
+}
+
+@font-face {
+  font-family: "Cinzel Decorative";
+  src: url("./fonts/cinzel-decorative-bold-ext.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+00A1-00B4, U+00B6-0107, U+010A-0113, U+0116-011B, U+011E-0123, U+0126-0127, U+012A-012B, U+012E-0133, U+0136-0137, U+0139-0148, U+014A-014D, U+0150-015B, U+015E-0167, U+016A-016B, U+016E-017E;
+}
+
+@font-face {
+  font-family: "Della Respira";
+  src: url("./fonts/della-respira-core.woff2") format("woff2");
+  font-weight: 300 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007E, U+2013-2014, U+2018, U+201C;
+}
+
+@font-face {
+  font-family: "Della Respira";
+  src: url("./fonts/della-respira-ext.woff2") format("woff2");
+  font-weight: 300 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+00A1-0110, U+0112-0122, U+0124-0125, U+0128-0137, U+0139-0141, U+0143-0148, U+014C-014F, U+0152-0153, U+017F;
+}
 
 :root {
   /* base surfaces */
@@ -94,6 +144,7 @@ h3 {
 }
 
 h4,
+.social-link-label,
 .show-date,
 .show-location,
 .show-title {
@@ -294,12 +345,21 @@ main a:hover {
 }
 
 #listen.content-section {
-  --split-left-background: url("./image/background/music.JPG");
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
   width: 100%;
   max-width: none;
   padding: 0;
   margin-top: calc(-1 * clamp(24px, 2vw, 40px));
+}
+
+#listen.content-section.is-loaded {
+  --split-left-background: url("./image/background/music.JPG");
+}
+
+@media (scripting: none) {
+  #listen.content-section {
+    --split-left-background: url("./image/background/music.JPG");
+  }
 }
 
 .music-grid {
@@ -452,6 +512,7 @@ main a:hover {
   gap: 0;
 }
 
+.about-social .social-link .social-link-label,
 .about-social .social-link h4 {
   position: absolute;
   width: 1px;
@@ -723,15 +784,25 @@ main a.live-set-card:hover {
 }
 
 #booking.content-section {
-  --split-left-background: url("./image/background/weng.png");
   --split-left-opacity: 0.1;
-  --split-right-background: url("./image/background/contact.JPG");
   width: 100%;
   max-width: none;
   min-height: calc(100svh - 4rem);
   padding: 0;
   margin-bottom: calc(-1 * clamp(70px, 9vw, 100px));
   scroll-margin-top: 4rem;
+}
+
+#booking.content-section.is-loaded {
+  --split-left-background: url("./image/background/weng.png");
+  --split-right-background: url("./image/background/contact.JPG");
+}
+
+@media (scripting: none) {
+  #booking.content-section {
+    --split-left-background: url("./image/background/weng.png");
+    --split-right-background: url("./image/background/contact.JPG");
+  }
 }
 
 .booking-panel {
