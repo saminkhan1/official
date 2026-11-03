@@ -288,41 +288,59 @@
         </div>
       </section>
 
-      <section id="live" class="content-section" aria-label="Live">
-        <h2>03 — Live</h2>
-        <article>
-          <h3>Featured Set</h3>
-          <div class="video-shell">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/M49pLhAA0HI?si=0K43lQXfJ0upbq7y"
-              title="YouTube video player"
-              frameborder="0"
-              allow="
-                accelerometer;
-                autoplay;
-                clipboard-write;
-                encrypted-media;
-                gyroscope;
-                picture-in-picture;
-                web-share;
-              "
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
+      <section id="live" class="content-section" aria-label="Live shows">
+        <div class="live-content">
+          <div class="live-toggle" role="group" aria-label="Show category">
+            <button
+              type="button"
+              data-show-view="live-sets"
+              aria-pressed="false"
+            >
+              Live Sets
+            </button>
+            <span class="live-toggle-divider" aria-hidden="true">|</span>
+            <button
+              type="button"
+              data-show-view="past-shows"
+              aria-pressed="true"
+            >
+              All Shows
+            </button>
           </div>
-        </article>
-        <br />
-        <div>
-          <h3>Past Shows</h3>
+
+          <div class="live-panel" data-show-panel="live-sets" hidden>
+            <h3 class="live-set-heading">Featured Set</h3>
+            <div class="video-shell">
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/M49pLhAA0HI?si=0K43lQXfJ0upbq7y"
+                title="WENG live set at Montreal Music Week"
+                frameborder="0"
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                  web-share;
+                "
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
           <div
-            class="live-carousel"
-            data-cards-src="data/all-shows.json"
-            aria-label="Live cards"
+            class="show-list"
+            data-show-panel="past-shows"
+            role="region"
+            aria-label="All shows"
+            aria-live="polite"
             tabindex="0"
           >
-            <p>Loading cards…</p>
+            <p class="show-list-status">Loading shows…</p>
           </div>
         </div>
       </section>

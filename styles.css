@@ -95,9 +95,13 @@ h3 {
   color: var(--ink);
 }
 
-h4 {
+h4,
+.show-date,
+.show-location,
+.show-title {
   font-family: "Cinzel", Georgia, serif;
   font-weight: 500;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
   margin: 0;
   color: var(--ink);
 }
@@ -329,7 +333,6 @@ main a:hover {
   gap: 2rem;
   max-height: min(65svh, 42rem);
   overflow-y: auto;
-  overscroll-behavior-y: contain;
 }
 
 .music-release {
@@ -543,99 +546,104 @@ main a:hover {
   border: 0;
 }
 
-.live-carousel {
-  display: grid;
-  grid-template-columns: repeat(3, calc((100% - 2rem) / 3));
-  grid-auto-rows: auto;
-  grid-auto-columns: calc((100% - 2rem) / 3);
-  grid-auto-flow: row;
-  gap: 1rem;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-padding-inline: var(--gutter);
-  scroll-snap-type: inline mandatory;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE / old Edge */
-}
-
-.live-carousel::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, new Edge */
-}
-
-.carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: none;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--paper-raised);
-  color: var(--ink);
-  cursor: pointer;
-  z-index: 6;
-  padding: 0;
-  transition:
-    background 180ms ease,
-    color 180ms ease;
-}
-
-.carousel-button:hover {
-  background: var(--accent-dark);
-  color: var(--ink);
-}
-
-.carousel-prev {
-  left: clamp(12px, 3vw, 36px);
-}
-
-.carousel-next {
-  right: clamp(12px, 3vw, 36px);
-}
-
-.live-card {
-  border: 1px solid var(--line);
-  background: var(--paper-raised);
-  color: var(--ink);
-  min-height: 100%;
-  padding: 1.5rem 1rem;
-  scroll-snap-align: start;
-}
-
-.live-card-image {
-  aspect-ratio: 1;
-  overflow: hidden;
-}
-
-.live-card-image img {
+#live.content-section {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: none;
+  padding: clamp(110px, 12vw, 150px) var(--gutter) clamp(80px, 10vw, 120px);
 }
 
-.live-card-title {
-  margin: 1rem 0;
-  text-align: center;
+.live-content {
+  width: min(1040px, 100%);
+  margin: 0 auto;
 }
 
-.live-card-location {
-  margin: 0.5rem 0;
+.live-toggle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.live-toggle button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #646464;
+  cursor: pointer;
+  font: inherit;
+  transition: color 180ms ease;
+}
+
+.live-toggle button[aria-pressed="true"],
+.live-toggle button:hover,
+.live-toggle button:focus-visible {
   color: var(--ink);
 }
 
-.live-card-youtube-link {
-  position: relative;
-  margin: 0.1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--ink);
+.live-toggle button:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 5px;
 }
 
-.live-card-youtube-link:hover {
-  color: var(--ink);
+.live-toggle-divider {
+  background: var(--gold-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.live-panel[hidden],
+.show-list[hidden] {
+  display: none;
+}
+
+.live-set-heading {
+  margin: 0 0 1rem;
+}
+
+.show-list {
+  display: grid;
+  gap: clamp(1.5rem, 3.2vw, 2.7rem);
+  max-height: min(65svh, 42rem);
+  overflow-y: auto;
+}
+
+.show-row {
+  display: grid;
+  grid-template-columns:
+    minmax(6rem, 0.8fr)
+    minmax(0, 1.8fr)
+    minmax(0, 2fr);
+  grid-template-areas: "date location title";
+  align-items: baseline;
+  gap: 1rem;
+  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  line-height: 1.35;
+}
+
+.show-date {
+  grid-area: date;
+}
+
+.show-location {
+  grid-area: location;
+}
+
+.show-title {
+  grid-area: title;
+}
+
+.show-location,
+.show-title {
+  margin: 0;
+}
+
+.show-list-status {
+  margin: 0;
 }
 
 .booking-title {
@@ -714,9 +722,13 @@ main a:hover {
 }
 
 @media (max-width: 560px) {
-  .live-carousel {
-    grid-template-columns: repeat(3, minmax(250px, 82vw));
-    grid-auto-columns: minmax(250px, 82vw);
+  .live-toggle {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+  .show-row {
+    grid-template-columns: minmax(4rem, 0.6fr) minmax(0, 1.4fr);
+    grid-template-areas: "date location" "title title";
+    gap: 0.25rem 0.75rem;
   }
   .booking-title {
     flex-direction: column;

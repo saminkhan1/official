@@ -1,19 +1,52 @@
 [
   {
+    "full-date": "Dec 10, 2026",
+    "title": "GVC Radio",
+    "location": "Worldwide",
+    "display": true
+  },
+  {
+    "full-date": "Dec 5, 2026",
+    "title": "Merry Bassmas",
+    "venue": "Tenjin Bar",
+    "location": "Toronto, Canada",
+    "display": true
+  },
+  {
+    "full-date": "Nov 18, 2026",
+    "title": "Ratforce Radio",
+    "location": "Worldwide",
+    "display": true
+  },
+  {
+    "full-date": "Nov 12, 2026",
+    "title": "iDigital Sounds",
+    "venue": "Trinity Drug Store",
+    "location": "Toronto, Canada",
+    "display": true
+  },
+  {
+    "full-date": "Oct 31, 2026",
+    "title": "Nightmare on Spadina",
+    "venue": "El Mocambo",
+    "location": "Toronto, Canada",
+    "display": true
+  },
+  {
     "full-date": "Oct 16, 2026",
-    "date": "October, 2026",
     "title": "Sidequest",
     "image": "./reference-image/20261016-sidequest.JPG",
-    "location": "Pangea, Montreal",
+    "venue": "Pangea",
+    "location": "Montreal, Canada",
     "youtube": "https://youtu.be/M_8uuB16OnE?si=mBlrhRR_6kDfggZK",
     "display": true
   },
   {
     "full-date": "Aug 29, 2026",
-    "date": "August, 2026",
     "title": "FOM",
     "image": "./reference-image/20260829-idk.jpg",
-    "location": "IDK Social Bar, Toronto",
+    "venue": "IDK Social Bar",
+    "location": "Toronto, Canada",
     "display": true
   },
   {
@@ -21,16 +54,17 @@
     "date": "August, 2026",
     "title": "System",
     "image": "./reference-image/20260808-comfort-zone.jpg",
-    "location": "Comfort Zone, Toronto",
+    "venue": "Comfort Zone",
+    "location": "Toronto, Canada",
     "youtube": "https://youtu.be/iYjLqr7QA-0?si=HPyilNg_c3Ka9P5p",
     "display": true
   },
   {
     "full-date": "Aug 7, 2026",
-    "date": "August, 2026",
     "title": "Montreal Music Week",
     "image": "./reference-image/20260807-mwm.png",
-    "location": "btwn.us Studio, Montreal",
+    "venue": "btwn.us Studio",
+    "location": "Montreal, Canada",
     "youtube": "https://youtu.be/M49pLhAA0HI?si=0K43lQXfJ0upbq7y",
     "display": true
   },
@@ -38,16 +72,17 @@
     "full-date": "July 4, 2026",
     "date": "July, 2026",
     "title": "Open Deck",
-    "location": "Overture Studio, Toronto",
+    "venue": "Overture Studio",
+    "location": "Toronto, Canada",
     "image": "./reference-image/20260704-overture.jpg",
     "youtube": "https://youtu.be/Q3ZmSiKK0mc?si=u56HswKwvxc4-ZWc",
-    "display": true
+    "display": false
   },
   {
     "full-date": "Jun 25, 2026",
-    "date": "June, 2026",
     "title": "Open Deck",
-    "location": "Geary Avenue Warehouse, Toronto",
+    "venue": "Geary Avenue Warehouse",
+    "location": "Toronto, Canada",
     "image": "./reference-image/20260625-geary.png",
     "display": false
   }
