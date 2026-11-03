@@ -1,6 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Della+Respira&display=swap");
 
 :root {
@@ -54,8 +53,7 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: var(--paper) url("reference-image/background-horizontal.png")
-    center / min(100vw, var(--max)) auto fixed no-repeat;
+  background: var(--paper);
   font-family: "Della Respira", Georgia, serif;
   font-weight: 300;
   font-size: clamp(1rem, 1vw, 1.1rem);

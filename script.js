@@ -5,20 +5,35 @@ const siteNav = document.querySelector(".site-nav")
 const navMenuToggle = document.querySelector(".nav-menu-toggle")
 const primaryNavigation = document.querySelector("#primary-navigation")
 
+// Reusable date formatter to avoid allocating ICU objects inside loops
+const showDateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+})
+
 function closeMobileNavigation() {
   siteNav?.classList.remove("is-open")
+  document.body.style.overflow = ""
   navMenuToggle?.setAttribute("aria-expanded", "false")
   navMenuToggle?.setAttribute("aria-label", "Open navigation")
 }
 
+function openMobileNavigation() {
+  siteNav?.classList.add("is-open")
+  document.body.style.overflow = "hidden"
+  navMenuToggle?.setAttribute("aria-expanded", "true")
+  navMenuToggle?.setAttribute("aria-label", "Close navigation")
+}
+
 navMenuToggle?.addEventListener("click", () => {
   const isExpanded = navMenuToggle.getAttribute("aria-expanded") === "true"
-  navMenuToggle.setAttribute("aria-expanded", String(!isExpanded))
-  navMenuToggle.setAttribute(
-    "aria-label",
-    isExpanded ? "Open navigation" : "Close navigation",
-  )
-  siteNav?.classList.toggle("is-open", !isExpanded)
+  if (isExpanded) {
+    closeMobileNavigation()
+  } else {
+    openMobileNavigation()
+  }
 })
 
 primaryNavigation?.querySelectorAll("a").forEach((link) => {
@@ -26,8 +41,9 @@ primaryNavigation?.querySelectorAll("a").forEach((link) => {
 })
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
+  if (event.key === "Escape" && siteNav?.classList.contains("is-open")) {
     closeMobileNavigation()
+    navMenuToggle?.focus()
   }
 })
 
@@ -62,22 +78,20 @@ async function loadPastShows(showList) {
       throw new Error(`${source} must contain a list of shows`)
     }
 
-    const visibleShows = shows
-      .filter(
-        (show) =>
-          show.display === true &&
-          show.title &&
-          show.location &&
-          show["full-date"],
-      )
-      .map((show) => {
-        const date = new Date(show["full-date"])
-        if (Number.isNaN(date.getTime())) {
-          throw new Error(`Invalid show date: ${show["full-date"]}`)
-        }
-        return { ...show, parsedDate: date }
-      })
-      .sort((first, second) => second.parsedDate - first.parsedDate)
+    // Fault-tolerant parsing: skip malformed items without crashing entire list
+    const visibleShows = []
+    for (const show of shows) {
+      if (!show?.display || !show.title || !show.location || !show["full-date"]) {
+        continue
+      }
+      const parsedDate = new Date(show["full-date"])
+      if (Number.isNaN(parsedDate.getTime())) {
+        continue
+      }
+      visibleShows.push({ ...show, parsedDate })
+    }
+
+    visibleShows.sort((first, second) => second.parsedDate - first.parsedDate)
 
     if (!visibleShows.length) {
       throw new Error(`No visible shows found in ${source}`)
@@ -90,14 +104,7 @@ async function loadPastShows(showList) {
       const date = document.createElement("time")
       date.className = "show-date"
       date.dateTime = show.parsedDate.toISOString().slice(0, 10)
-      date.textContent = new Intl.DateTimeFormat("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-        timeZone: "UTC",
-      })
-        .format(show.parsedDate)
-        .toLowerCase()
+      date.textContent = showDateFormatter.format(show.parsedDate).toLowerCase()
 
       const location = document.createElement("p")
       location.className = "show-location"
@@ -202,19 +209,16 @@ if (pastShowsList) {
   loadPastShows(pastShowsList)
 }
 
-document.querySelectorAll("[data-track]").forEach((element) => {
-  element.addEventListener("click", () => {
-    window.dispatchEvent(
-      new CustomEvent("weng:track", {
-        detail: {
-          action: element.dataset.track,
-          href: element instanceof HTMLAnchorElement ? element.href : undefined,
-        },
-      }),
-    )
-  })
-})
-window.addEventListener("weng:track", (e) => {
-  // Wire up your analytics platform here (e.g. gtag, Plausible, Fathom)
-  console.log("[track]", e.detail)
+// Delegated click tracking (handles both static and dynamically loaded elements)
+document.addEventListener("click", (event) => {
+  const target = event.target.closest("[data-track]")
+  if (!target) return
+  window.dispatchEvent(
+    new CustomEvent("weng:track", {
+      detail: {
+        action: target.dataset.track,
+        href: target instanceof HTMLAnchorElement ? target.href : undefined,
+      },
+    }),
+  )
 })

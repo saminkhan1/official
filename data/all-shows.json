@@ -35,7 +35,7 @@
   {
     "full-date": "Oct 16, 2026",
     "title": "Sidequest",
-    "image": "./reference-image/20261016-sidequest.JPG",
+    "image": "./image/shows/20261016-sidequest.JPG",
     "venue": "Pangea",
     "location": "Montreal, Canada",
     "youtube": "https://youtu.be/M_8uuB16OnE?si=mBlrhRR_6kDfggZK",
@@ -44,7 +44,6 @@
   {
     "full-date": "Aug 29, 2026",
     "title": "FOM",
-    "image": "./reference-image/20260829-idk.jpg",
     "venue": "IDK Social Bar",
     "location": "Toronto, Canada",
     "display": true
@@ -53,7 +52,7 @@
     "full-date": "Aug 8, 2026",
     "date": "August, 2026",
     "title": "System",
-    "image": "./reference-image/20260808-comfort-zone.jpg",
+    "image": "./image/shows/20260808-comfort-zone.jpg",
     "venue": "Comfort Zone",
     "location": "Toronto, Canada",
     "youtube": "https://youtu.be/iYjLqr7QA-0?si=HPyilNg_c3Ka9P5p",
@@ -62,7 +61,7 @@
   {
     "full-date": "Aug 7, 2026",
     "title": "Montreal Music Week",
-    "image": "./reference-image/20260807-mwm.png",
+    "image": "./image/shows/20260807-mwm.png",
     "venue": "btwn.us Studio",
     "location": "Montreal, Canada",
     "youtube": "https://youtu.be/M49pLhAA0HI?si=0K43lQXfJ0upbq7y",
@@ -74,7 +73,7 @@
     "title": "Open Deck",
     "venue": "Overture Studio",
     "location": "Toronto, Canada",
-    "image": "./reference-image/20260704-overture.jpg",
+    "image": "./image/shows/20260704-overture.jpg",
     "youtube": "https://youtu.be/Q3ZmSiKK0mc?si=u56HswKwvxc4-ZWc",
     "display": false
   },
@@ -83,7 +82,6 @@
     "title": "Open Deck",
     "venue": "Geary Avenue Warehouse",
     "location": "Toronto, Canada",
-    "image": "./reference-image/20260625-geary.png",
     "display": false
   }
 ]
