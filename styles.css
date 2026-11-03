@@ -38,7 +38,7 @@
     #956d13
   );
   --line: rgba(255, 255, 255, 0.14);
-  --max: 1180px;
+  --max: 1920px;
   --gutter: clamp(2rem, 4vw, 4rem);
 }
 
@@ -55,7 +55,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper) url("reference-image/background-horizontal.png")
-    center / cover fixed no-repeat;
+    center / min(100vw, var(--max)) auto fixed no-repeat;
   font-family: "Della Respira", Georgia, serif;
   font-weight: 300;
   font-size: 1.1rem;
@@ -117,11 +117,13 @@ a {
   right: 0;
   left: 0;
   z-index: 10;
+  width: min(100%, var(--max));
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0rem var(--gutter);
-  background: var(--paper);
+  background: #000;
   border-bottom: 0;
   font-family: "Cinzel Decorative", Georgia, serif;
   font-size: 1rem;
@@ -169,6 +171,8 @@ a {
 }
 
 main {
+  width: min(100%, var(--max));
+  margin-inline: auto;
   padding-top: clamp(24px, 2vw, 40px);
   line-height: 1.5;
   padding-bottom: clamp(70px, 9vw, 100px);
@@ -248,8 +252,6 @@ main a:hover {
 }
 
 #about.content-section {
-  --split-left-background: url("./image/background/weng.png");
-  --split-left-opacity: 0.1;
   --split-right-background: url("./image/background/home.JPG");
   --split-right-opacity: 1;
   width: 100%;
@@ -276,6 +278,7 @@ main a:hover {
 .about-panel--left {
   grid-column: 1;
   align-items: center;
+  background-color: var(--paper);
 }
 
 .about-content {
@@ -290,8 +293,6 @@ main a:hover {
 
 #listen.content-section {
   --split-left-background: url("./image/background/music.JPG");
-  --split-right-background: url("./image/background/weng.png");
-  --split-right-opacity: 0.08;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
   width: 100%;
   max-width: none;
@@ -320,6 +321,7 @@ main a:hover {
   grid-column: 2;
   align-items: center;
   justify-content: center;
+  background-color: #000;
 }
 
 .music-content {
@@ -386,19 +388,18 @@ main a:hover {
 }
 
 .music-platform-icon {
+  display: block;
   width: 1.5rem;
   height: 1.5rem;
-  object-fit: contain;
-  transition: opacity 180ms ease;
+  background: var(--ink);
+  -webkit-mask: var(--icon-mask) center / contain no-repeat;
+  mask: var(--icon-mask) center / contain no-repeat;
+  transition: background 180ms ease;
 }
 
 .music-platform-icon--download {
   width: 1.6rem;
   height: 1.6rem;
-}
-
-.music-platforms a:hover .music-platform-icon {
-  opacity: 0.7;
 }
 
 .about-panel h1 {
@@ -437,6 +438,10 @@ main a:hover {
   gap: 1rem 1.5rem;
 }
 
+#about .about-social a::after {
+  display: none;
+}
+
 .about-social .social-link {
   gap: 0;
 }
@@ -468,9 +473,22 @@ main a:hover {
 }
 
 .social-icon,
-.live-card-youtube-icon,
-.booking-email-icon {
+.live-card-youtube-icon {
   width: 1.5rem;
+}
+
+.social-icon {
+  display: block;
+  height: 1.5rem;
+  background: var(--ink);
+  -webkit-mask: var(--icon-mask) center / contain no-repeat;
+  mask: var(--icon-mask) center / contain no-repeat;
+  transition: background 180ms ease;
+}
+
+.music-platforms a:is(:hover, :focus-visible) .music-platform-icon,
+.about-social .social-link:is(:hover, :focus-visible) .social-icon {
+  background: var(--gold-gradient-horizontal);
 }
 
 .portrait-frame {
@@ -607,7 +625,6 @@ main a:hover {
   min-width: 0;
   overflow: hidden;
   border: 1px solid transparent;
-  background: #000;
   color: inherit;
   cursor: pointer;
   transition: border-color 180ms ease;
@@ -699,34 +716,60 @@ main a.live-set-card:hover {
   margin: 0;
 }
 
-.booking-title {
+#booking.content-section {
+  --split-left-background: url("./image/background/weng.png");
+  --split-left-opacity: 0.1;
+  --split-right-background: url("./image/background/contact.JPG");
+  width: 100%;
+  max-width: none;
+  min-height: calc(100svh - 4rem);
+  padding: 0;
+  margin-bottom: calc(-1 * clamp(70px, 9vw, 100px));
+  scroll-margin-top: 4rem;
+}
+
+.booking-panel {
   display: flex;
+  min-width: 0;
+}
+
+.booking-panel--content {
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 0.4rem;
+  padding: clamp(2rem, 5vw, 5rem);
+  padding-bottom: clamp(8rem, 15vw, 13rem);
+}
+
+.booking-content {
+  width: min(100%, 34rem);
+}
+
+.booking-content h2 {
+  margin: 0 0 clamp(3rem, 6vw, 5rem);
+}
+
+.booking-label,
+.booking-email {
+  display: block;
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.5;
 }
 
 .booking-email {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  width: fit-content;
+  transition: filter 180ms ease;
+}
+
+.booking-email::after {
+  content: none;
 }
 
 .booking-email:hover {
-  color: var(--ink);
-}
-
-.site-footer {
-  display: flex;
-  justify-content: center;
-  padding: 3rem;
-  border-top: 1px solid var(--line);
-  text-align: center;
-}
-
-.footer-mark {
-  width: min(220px, 60vw);
-  height: auto;
+  color: transparent;
+  filter: brightness(0.85);
 }
 
 @media (max-width: 880px) {
@@ -747,6 +790,17 @@ main a.live-set-card:hover {
   }
   #listen.content-section {
     grid-template-columns: 1fr;
+  }
+  #booking.content-section {
+    grid-template-columns: 1fr;
+  }
+  .booking-panel--content {
+    min-height: calc(100svh - 4rem);
+    padding: 2rem var(--gutter);
+    padding-bottom: 6rem;
+  }
+  .booking-panel--image {
+    min-height: 65svh;
   }
   .about-panel--left,
   .about-panel--right {
@@ -785,10 +839,6 @@ main a.live-set-card:hover {
     grid-template-columns: minmax(4rem, 0.6fr) minmax(0, 1.4fr);
     grid-template-areas: "date location" "title title";
     gap: 0.25rem 0.75rem;
-  }
-  .booking-title {
-    flex-direction: column;
-    align-items: flex-start;
   }
 }
 
