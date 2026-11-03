@@ -331,7 +331,7 @@ main a:hover {
 .music-releases {
   display: grid;
   gap: 2rem;
-  max-height: min(65svh, 42rem);
+  max-height: min(85svh, 42rem);
   overflow-y: auto;
 }
 
@@ -473,12 +473,6 @@ main a:hover {
   width: 1.5rem;
 }
 
-.live-card-youtube-icon,
-.booking-email-icon {
-  width: 1rem;
-  height: 1rem;
-}
-
 .portrait-frame {
   width: 90%;
   position: relative;
@@ -601,8 +595,67 @@ main a:hover {
   display: none;
 }
 
-.live-set-heading {
-  margin: 0 0 1rem;
+.live-set-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.live-set-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background: #000;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 180ms ease;
+}
+
+.live-set-card:hover,
+.live-set-card:focus-within {
+  border-color: #a47a1e;
+}
+
+main a.live-set-card::after {
+  content: none;
+}
+
+main a.live-set-card:hover {
+  color: inherit;
+}
+
+.live-set-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.live-set-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 6rem;
+  padding: 0.75rem 1rem 1rem;
+}
+
+.live-set-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 0;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.live-set-title-text {
+  min-width: 0;
+}
+
+.live-set-youtube {
+  flex: 0 0 auto;
 }
 
 .show-list {
@@ -725,6 +778,9 @@ main a:hover {
   .live-toggle {
     font-size: clamp(1rem, 4vw, 1.4rem);
   }
+  .live-set-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .show-row {
     grid-template-columns: minmax(4rem, 0.6fr) minmax(0, 1.4fr);
     grid-template-areas: "date location" "title title";
@@ -733,5 +789,11 @@ main a:hover {
   .booking-title {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (min-width: 561px) and (max-width: 880px) {
+  .live-set-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

@@ -282,6 +282,63 @@
                     </div>
                   </div>
                 </article>
+                <!-- <article class="music-release">
+                  <img
+                    class="music-release-cover"
+                    src="./image/music/when%20will%20we%20unite.png"
+                    alt="When Will We Unite cover art"
+                  />
+                  <div class="music-release-info">
+                    <h3 class="music-release-title">WHen Will We Unite</h3>
+                    <p class="music-release-description">
+                      An emotional schranz journey about two lovers separated by
+                      distance but longing to be together.
+                    </p>
+                    <div
+                      class="music-platforms"
+                      aria-label="Listen to When Will We Unite"
+                    >
+                      <a href="#" aria-label="When Will We Unite on Spotify">
+                        <img
+                          src="./icon/spotify-white.png"
+                          alt=""
+                          class="music-platform-icon"
+                        />
+                      </a>
+                      <a
+                        href="#"
+                        aria-label="When Will We Unite on Apple Music"
+                      >
+                        <img
+                          src="./icon/apple-music-white.png"
+                          alt=""
+                          class="music-platform-icon music-platform-icon--apple"
+                        />
+                      </a>
+                      <a href="#" aria-label="When Will We Unite on SoundCloud">
+                        <img
+                          src="./icon/soundcloud-white.png"
+                          alt=""
+                          class="music-platform-icon"
+                        />
+                      </a>
+                      <a href="#" aria-label="When Will We Unite on YouTube">
+                        <img
+                          src="./icon/youtube-white.png"
+                          alt=""
+                          class="music-platform-icon"
+                        />
+                      </a>
+                      <a href="#" aria-label="Download When Will We Unite">
+                        <img
+                          src="./icon/download-white.png"
+                          alt=""
+                          class="music-platform-icon music-platform-icon--download"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </article> -->
               </div>
             </div>
           </div>
@@ -294,7 +351,7 @@
             <button
               type="button"
               data-show-view="live-sets"
-              aria-pressed="false"
+              aria-pressed="true"
             >
               Live Sets
             </button>
@@ -302,41 +359,30 @@
             <button
               type="button"
               data-show-view="past-shows"
-              aria-pressed="true"
+              aria-pressed="false"
             >
-              All Shows
+              Past Shows
             </button>
           </div>
 
-          <div class="live-panel" data-show-panel="live-sets" hidden>
-            <h3 class="live-set-heading">Featured Set</h3>
-            <div class="video-shell">
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/M49pLhAA0HI?si=0K43lQXfJ0upbq7y"
-                title="WENG live set at Montreal Music Week"
-                frameborder="0"
-                allow="
-                  accelerometer;
-                  autoplay;
-                  clipboard-write;
-                  encrypted-media;
-                  gyroscope;
-                  picture-in-picture;
-                  web-share;
-                "
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
+          <div class="live-panel" data-show-panel="live-sets">
+            <div
+              class="live-set-grid"
+              data-live-sets
+              role="region"
+              aria-label="Live sets"
+              aria-live="polite"
+            >
+              <p class="show-list-status">Loading live sets…</p>
             </div>
           </div>
 
           <div
             class="show-list"
             data-show-panel="past-shows"
+            hidden
             role="region"
-            aria-label="All shows"
+            aria-label="Past shows"
             aria-live="polite"
             tabindex="0"
           >
