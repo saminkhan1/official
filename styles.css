@@ -862,6 +862,13 @@ main a.live-set-card:hover {
   #about.content-section {
     min-height: 0;
   }
+  .about-panel--right,
+  .music-panel--image,
+  .booking-panel--image {
+    width: 100%;
+    justify-self: stretch;
+    aspect-ratio: 1;
+  }
   .about-grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -907,7 +914,7 @@ main a.live-set-card:hover {
   }
 
   .about-panel--left {
-    padding-block: clamp(6rem, 10vw, 8rem) 3rem;
+    padding-block: clamp(6rem, 10vw, 8rem);
   }
 
   .music-panel--content,
