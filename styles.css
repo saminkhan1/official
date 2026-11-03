@@ -58,7 +58,7 @@ body {
     center / min(100vw, var(--max)) auto fixed no-repeat;
   font-family: "Della Respira", Georgia, serif;
   font-weight: 300;
-  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  font-size: clamp(1rem, 1vw, 1.1rem);
   letter-spacing: 0.08em;
   text-rendering: optimizeLegibility;
 }
