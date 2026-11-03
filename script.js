@@ -1,149 +1,207 @@
-function createliveCard(card) {
-  const article = document.createElement("article")
-  article.className = "live-card"
+const showViewButtons = document.querySelectorAll("[data-show-view]")
+const showPanels = document.querySelectorAll("[data-show-panel]")
 
-  const imageFrame = document.createElement("div")
-  imageFrame.className = "live-card-image"
-  const image = document.createElement("img")
-  image.src = card.image
-  image.alt = card.alt || `Live set at ${card.title}`
-  image.loading = "lazy"
-  imageFrame.append(image)
+const siteNav = document.querySelector(".site-nav")
+const navMenuToggle = document.querySelector(".nav-menu-toggle")
+const primaryNavigation = document.querySelector("#primary-navigation")
 
-  const title = document.createElement("h4")
-  title.className = "live-card-title"
-  title.textContent = card.title
-
-  let location = null
-  if (card.location) {
-    location = document.createElement("p")
-    location.className = "live-card-location"
-    location.textContent = "@ " + card.location
-  }
-
-  let youtubeLink = null
-  if (card.youtube) {
-    youtubeLink = document.createElement("a")
-    youtubeLink.href = card.youtube
-    youtubeLink.target = "_blank"
-    youtubeLink.rel = "noopener noreferrer"
-    youtubeLink.className = "live-card-youtube-link"
-    const icon = document.createElement("img")
-    icon.src = "icon/youtube.png"
-    icon.alt = ""
-    icon.className = "live-card-youtube-icon"
-    const label = document.createElement("span")
-    label.textContent = "Watch the full set"
-    youtubeLink.append(icon, label)
-  }
-
-  article.append(imageFrame, title)
-  if (location) article.append(location)
-  if (youtubeLink) article.append(youtubeLink)
-
-  return article
+function closeMobileNavigation() {
+  siteNav?.classList.remove("is-open")
+  navMenuToggle?.setAttribute("aria-expanded", "false")
+  navMenuToggle?.setAttribute("aria-label", "Open navigation")
 }
-async function loadliveCards(carousel) {
-  const source = carousel.dataset.cardsSrc
-  if (!source) {
-    return
+
+navMenuToggle?.addEventListener("click", () => {
+  const isExpanded = navMenuToggle.getAttribute("aria-expanded") === "true"
+  navMenuToggle.setAttribute("aria-expanded", String(!isExpanded))
+  navMenuToggle.setAttribute(
+    "aria-label",
+    isExpanded ? "Open navigation" : "Close navigation",
+  )
+  siteNav?.classList.toggle("is-open", !isExpanded)
+})
+
+primaryNavigation?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", closeMobileNavigation)
+})
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeMobileNavigation()
   }
+})
+
+window.matchMedia("(min-width: 881px)").addEventListener("change", (event) => {
+  if (event.matches) {
+    closeMobileNavigation()
+  }
+})
+
+showViewButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const activeView = button.dataset.showView
+    showViewButtons.forEach((viewButton) => {
+      viewButton.setAttribute("aria-pressed", String(viewButton === button))
+    })
+    showPanels.forEach((panel) => {
+      panel.hidden = panel.dataset.showPanel !== activeView
+    })
+  })
+})
+
+async function loadPastShows(showList) {
+  const source = "data/all-shows.json"
   try {
     const response = await fetch(source)
     if (!response.ok) {
-      throw new Error(`Unable to load ${source}`)
+      throw new Error(`Unable to load ${source}: ${response.status}`)
     }
-    const cards = await response.json()
-    const validCards = cards.filter(
-      (card) => card.display === true && card.title && card.image,
-    )
-    if (!validCards.length) {
-      throw new Error(`No valid cards found in ${source}`)
+
+    const shows = await response.json()
+    if (!Array.isArray(shows)) {
+      throw new Error(`${source} must contain a list of shows`)
     }
-    carousel.replaceChildren(...validCards.map(createliveCard))
-    // Add interactive controls to the carousel (prev/next)
-    setupCarouselControls(carousel)
+
+    const visibleShows = shows
+      .filter(
+        (show) =>
+          show.display === true &&
+          show.title &&
+          show.location &&
+          show["full-date"],
+      )
+      .map((show) => {
+        const date = new Date(show["full-date"])
+        if (Number.isNaN(date.getTime())) {
+          throw new Error(`Invalid show date: ${show["full-date"]}`)
+        }
+        return { ...show, parsedDate: date }
+      })
+      .sort((first, second) => second.parsedDate - first.parsedDate)
+
+    if (!visibleShows.length) {
+      throw new Error(`No visible shows found in ${source}`)
+    }
+
+    const rows = visibleShows.map((show) => {
+      const row = document.createElement("article")
+      row.className = "show-row"
+
+      const date = document.createElement("time")
+      date.className = "show-date"
+      date.dateTime = show.parsedDate.toISOString().slice(0, 10)
+      date.textContent = new Intl.DateTimeFormat("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        timeZone: "UTC",
+      })
+        .format(show.parsedDate)
+        .toLowerCase()
+
+      const location = document.createElement("p")
+      location.className = "show-location"
+      location.textContent = show.location.toLowerCase()
+
+      const title = document.createElement("p")
+      title.className = "show-title"
+      title.textContent = show.title
+
+      row.append(date, location, title)
+      return row
+    })
+
+    showList.replaceChildren(...rows)
   } catch (error) {
-    const status =
-      carousel.querySelector(".carousel-status") || document.createElement("p")
-    status.className = "carousel-status"
-    status.textContent = `Unable to load live cards from ${source}.`
-    carousel.replaceChildren(status)
+    console.error(`Unable to load all shows from ${source}.`, error)
+    const status = document.createElement("p")
+    status.className = "show-list-status"
+    status.textContent = "All shows are currently unavailable."
+    showList.replaceChildren(status)
   }
 }
-document.querySelectorAll("[data-cards-src]").forEach((carousel) => {
-  loadliveCards(carousel)
-})
 
-function setupCarouselControls(carousel) {
-  if (carousel._controlsInstalled) return
-  carousel._controlsInstalled = true
-  // Wrap carousel in a non-scrolling wrapper so controls don't scroll away
-  let wrapper =
-    carousel.parentElement &&
-    carousel.parentElement.querySelector(".carousel-wrap")
-  if (!wrapper) {
-    wrapper = document.createElement("div")
-    wrapper.className = "carousel-wrap"
-    // ensure wrapper uses the same flow as carousel's previous position
-    const parent = carousel.parentElement
-    parent.replaceChild(wrapper, carousel)
-    wrapper.appendChild(carousel)
-  }
-  wrapper.style.position = wrapper.style.position || "relative"
-
-  const prev = document.createElement("button")
-  prev.className = "carousel-button carousel-prev"
-  prev.setAttribute("aria-label", "Scroll left")
-  prev.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 6 L9 12 L15 18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`
-
-  const next = document.createElement("button")
-  next.className = "carousel-button carousel-next"
-  next.setAttribute("aria-label", "Scroll right")
-  next.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 6 L15 12 L9 18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`
-
-  // Insert controls into wrapper (so they stay visible while carousel scrolls)
-  wrapper.append(prev, next)
-
-  const scrollAmount = () => carousel.clientWidth
-
-  prev.addEventListener("click", () => {
-    carousel.scrollBy({ left: -scrollAmount(), behavior: "smooth" })
-  })
-  next.addEventListener("click", () => {
-    carousel.scrollBy({ left: scrollAmount(), behavior: "smooth" })
-  })
-
-  function updateControls() {
-    const maxScroll = carousel.scrollWidth - carousel.clientWidth
-    const atStart = carousel.scrollLeft <= 8
-    const atEnd = carousel.scrollLeft >= maxScroll - 8
-    const overflow = carousel.scrollWidth > carousel.clientWidth + 4
-    // Hide controls on narrow screens (mobile)
-    if (window.matchMedia("(max-width:560px)").matches) {
-      prev.style.display = "none"
-      next.style.display = "none"
-      return
+async function loadLiveSets(showList) {
+  const source = "data/live-sets.json"
+  try {
+    const response = await fetch(source)
+    if (!response.ok) {
+      throw new Error(`Unable to load ${source}: ${response.status}`)
     }
-    prev.style.display = overflow && !atStart ? "grid" : "none"
-    next.style.display = overflow && !atEnd ? "grid" : "none"
+
+    const liveSets = await response.json()
+    if (!Array.isArray(liveSets) || liveSets.length === 0) {
+      throw new Error(`${source} must contain at least one live set`)
+    }
+
+    const cards = liveSets.map((liveSet) => {
+      if (
+        typeof liveSet.title !== "string" ||
+        typeof liveSet.image !== "string" ||
+        typeof liveSet.youtube !== "string"
+      ) {
+        throw new Error(`${source} contains a live set with missing details`)
+      }
+
+      const card = document.createElement("a")
+      card.className = "live-set-card"
+      card.href = liveSet.youtube
+      card.target = "_blank"
+      card.rel = "noopener noreferrer"
+      card.setAttribute("aria-label", `${liveSet.title} on YouTube`)
+
+      const image = document.createElement("img")
+      image.className = "live-set-image"
+      image.src = liveSet.image
+      image.alt = ""
+      image.loading = "lazy"
+
+      const info = document.createElement("div")
+      info.className = "live-set-info"
+
+      const title = document.createElement("h4")
+      title.className = "live-set-title"
+
+      const icon = document.createElement("img")
+      icon.className = "live-card-youtube-icon"
+      icon.src = "icon/youtube-white.png"
+      icon.alt = ""
+
+      const youtubeIcon = document.createElement("span")
+      youtubeIcon.className = "live-set-youtube"
+      youtubeIcon.setAttribute("aria-hidden", "true")
+      youtubeIcon.append(icon)
+
+      const titleText = document.createElement("span")
+      titleText.className = "live-set-title-text"
+      titleText.textContent = liveSet.title
+
+      title.append(youtubeIcon, titleText)
+      info.append(title)
+      card.append(image, info)
+      return card
+    })
+
+    showList.replaceChildren(...cards)
+  } catch (error) {
+    console.error(`Unable to load live sets from ${source}.`, error)
+    const status = document.createElement("p")
+    status.className = "show-list-status"
+    status.textContent = "Live sets are currently unavailable."
+    showList.replaceChildren(status)
   }
-
-  // Update on scroll, resize and when images load
-  carousel.addEventListener("scroll", () =>
-    requestAnimationFrame(updateControls),
-  )
-  window.addEventListener("resize", () => requestAnimationFrame(updateControls))
-
-  // If images inside cards load later, re-check
-  const imgs = carousel.querySelectorAll("img")
-  imgs.forEach((img) =>
-    img.addEventListener("load", () => requestAnimationFrame(updateControls)),
-  )
-
-  // initial update (allow time for layout)
-  requestAnimationFrame(() => setTimeout(updateControls, 40))
 }
+
+const liveSetsList = document.querySelector("[data-live-sets]")
+if (liveSetsList) {
+  loadLiveSets(liveSetsList)
+}
+
+const pastShowsList = document.querySelector('[data-show-panel="past-shows"]')
+if (pastShowsList) {
+  loadPastShows(pastShowsList)
+}
+
 document.querySelectorAll("[data-track]").forEach((element) => {
   element.addEventListener("click", () => {
     window.dispatchEvent(

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Della+Respira&display=swap");
 
 :root {
   /* base surfaces */
@@ -16,8 +17,28 @@
   --accent: #e11c17;
   --accent-dark: #c10e09;
 
+  --gold-gradient: linear-gradient(
+    180deg,
+    #a47a1e,
+    #d3a84c,
+    #ffec94,
+    #e6be69,
+    #ffd87c,
+    #b58f3e,
+    #956d13
+  );
+  --gold-gradient-horizontal: linear-gradient(
+    90deg,
+    #a47a1e,
+    #d3a84c,
+    #ffec94,
+    #e6be69,
+    #ffd87c,
+    #b58f3e,
+    #956d13
+  );
   --line: rgba(255, 255, 255, 0.14);
-  --max: 1180px;
+  --max: 1920px;
   --gutter: clamp(2rem, 4vw, 4rem);
 }
 
@@ -26,6 +47,7 @@
 }
 
 html {
+  font-size: 14px;
   scroll-behavior: smooth;
 }
 
@@ -33,10 +55,11 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper) url("reference-image/background-horizontal.png")
-    center / cover fixed no-repeat;
-  font-family: "Nunito Sans", Arial, sans-serif;
+    center / min(100vw, var(--max)) auto fixed no-repeat;
+  font-family: "Della Respira", Georgia, serif;
   font-weight: 300;
-  font-size: clamp(15px, 1.6vw, 18px);
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
+  letter-spacing: 0.08em;
   text-rendering: optimizeLegibility;
 }
 
@@ -61,18 +84,24 @@ h1 {
 h2 {
   font-family: "Cinzel Decorative", Georgia, serif;
   font-weight: 700;
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 2rem);
+  margin: 0 0 3rem;
 }
 
 h3 {
-  font-family: "Cinzel", Georgia, serif;
-  font-weight: 500;
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
   color: var(--ink);
 }
 
-h4 {
+h4,
+.show-date,
+.show-location,
+.show-title {
   font-family: "Cinzel", Georgia, serif;
   font-weight: 500;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
   margin: 0;
   color: var(--ink);
 }
@@ -88,20 +117,37 @@ a {
   right: 0;
   left: 0;
   z-index: 10;
+  width: min(100%, var(--max));
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem var(--gutter);
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
+  padding: 0rem var(--gutter);
+  background: #000;
+  border-bottom: 0;
   font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1;
 }
 
+.site-nav::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--gold-gradient-horizontal);
+  content: "";
+}
+
 .site-nav nav {
   display: flex;
-  gap: clamp(14px, 2.4vw, 34px);
+  gap: clamp(1.5rem, 2.4vw, 3rem);
+}
+
+.nav-menu-toggle {
+  display: none;
 }
 
 .site-nav a {
@@ -119,17 +165,18 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: clamp(2.8rem, 3.4vw, 3.8rem);
+  height: 4rem;
 }
 
 .nav-mark img {
   display: block;
   height: 100%;
   width: auto;
-  transform: scale(1.2);
 }
 
 main {
+  width: min(100%, var(--max));
+  margin-inline: auto;
   padding-top: clamp(24px, 2vw, 40px);
   line-height: 1.5;
   padding-bottom: clamp(70px, 9vw, 100px);
@@ -164,26 +211,256 @@ main a:hover {
   margin: 0 auto;
 }
 
-.about-grid {
+.split-background {
   display: grid;
-  grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1fr);
-  column-gap: var(--gutter);
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  min-height: 100svh;
+}
+
+.split-background--reverse {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
+}
+
+.split-background--reverse .split-background__panel--left {
+  grid-column: 2;
+}
+
+.split-background--reverse .split-background__panel--right {
+  grid-column: 1;
+}
+
+.split-background__panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--paper-deep);
+}
+
+.split-background__panel::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-position: center;
+  background-size: cover;
+  content: "";
+}
+
+.split-background__panel--left::before {
+  background-image: var(--split-left-background);
+  opacity: var(--split-left-opacity, 1);
+}
+
+.split-background__panel--right::before {
+  background-image: var(--split-right-background);
+  opacity: var(--split-right-opacity, 1);
+}
+
+#about.content-section {
+  --split-right-background: url("./image/background/home.JPG");
+  --split-right-opacity: 1;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin-top: calc(-1 * clamp(24px, 2vw, 40px));
+}
+
+.about-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: stretch;
+}
+
+.about-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(2rem, 5vw, 5rem);
+}
+
+.about-panel--left {
+  grid-column: 1;
+  align-items: center;
+  background-color: var(--paper);
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 34rem);
+}
+
+.about-panel--right {
+  grid-column: 2;
+}
+
+#listen.content-section {
+  --split-left-background: url("./image/background/music.JPG");
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin-top: calc(-1 * clamp(24px, 2vw, 40px));
+}
+
+.music-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: stretch;
+}
+
+.music-panel {
+  display: flex;
+  min-width: 0;
+  padding: clamp(2rem, 5vw, 5rem);
+}
+
+.music-panel--image {
+  grid-column: 1;
+}
+
+.music-panel--content {
+  grid-column: 2;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
+.music-content {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 55rem);
+}
+
+.music-title {
+  display: none;
+}
+
+.music-releases {
+  display: grid;
+  gap: 2rem;
+  max-height: min(85svh, 42rem);
+  overflow-y: auto;
+}
+
+.music-release {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.65fr);
   align-items: center;
 }
 
-.about-social {
-  margin: 50px 0 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, max-content));
-  column-gap: var(--gutter);
+.music-release-cover {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
 }
 
-.social-col {
+.music-release-info {
+  min-width: 0;
+  padding: clamp(1rem, 2.2vw, 2rem);
+}
+
+.music-release-title {
+  margin: 0 0 0.8rem;
+}
+
+.music-release-description {
+  margin: 0 0 1.5rem;
+}
+
+.music-platforms {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 1.2rem;
+}
+
+#listen a::after {
+  display: none;
+}
+
+.music-platforms a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  min-height: 1.75rem;
+}
+
+.music-platforms a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.music-platform-icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--ink);
+  -webkit-mask: var(--icon-mask) center / contain no-repeat;
+  mask: var(--icon-mask) center / contain no-repeat;
+  transition: background 180ms ease;
+}
+
+.music-platform-icon--download {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.about-panel h1 {
+  margin: 0 0 2rem;
+}
+
+.about-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0 0.35em;
+  margin: 1rem 0 1.5rem;
+  font-family: "Della Respira", Georgia, serif;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+}
+
+.gold-gradient-text {
+  background: var(--gold-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.about-description {
+  max-width: 34rem;
+  margin: 0 0 1.5rem;
+}
+
+.about-social {
+  margin: 2rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1rem 1.5rem;
+}
+
+#about .about-social a::after {
+  display: none;
+}
+
+.about-social .social-link {
+  gap: 0;
+}
+
+.about-social .social-link h4 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 
 .social-link {
@@ -204,17 +481,22 @@ main a:hover {
 }
 
 .social-icon,
-.live-card-youtube-icon,
-.booking-email-icon {
-  width: 1.3rem;
-  filter: brightness(0) saturate(100%) invert(95%) sepia(8%) saturate(184%)
-    hue-rotate(348deg) brightness(102%) contrast(90%);
+.live-card-youtube-icon {
+  width: 1.5rem;
 }
 
-.live-card-youtube-icon,
-.booking-email-icon {
-  width: 1rem;
-  height: 1rem;
+.social-icon {
+  display: block;
+  height: 1.5rem;
+  background: var(--ink);
+  -webkit-mask: var(--icon-mask) center / contain no-repeat;
+  mask: var(--icon-mask) center / contain no-repeat;
+  transition: background 180ms ease;
+}
+
+.music-platforms a:is(:hover, :focus-visible) .music-platform-icon,
+.about-social .social-link:is(:hover, :focus-visible) .social-icon {
+  background: var(--gold-gradient-horizontal);
 }
 
 .portrait-frame {
@@ -284,167 +566,406 @@ main a:hover {
   border: 0;
 }
 
-.live-carousel {
-  display: grid;
-  grid-template-columns: repeat(3, calc((100% - 2rem) / 3));
-  grid-auto-rows: auto;
-  grid-auto-columns: calc((100% - 2rem) / 3);
-  grid-auto-flow: row;
-  gap: 1rem;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-padding-inline: var(--gutter);
-  scroll-snap-type: inline mandatory;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE / old Edge */
-}
-
-.live-carousel::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, new Edge */
-}
-
-.carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: none;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--paper-raised);
-  color: var(--ink);
-  cursor: pointer;
-  z-index: 6;
-  padding: 0;
-  transition:
-    background 180ms ease,
-    color 180ms ease;
-}
-
-.carousel-button:hover {
-  background: var(--accent-dark);
-  color: var(--ink);
-}
-
-.carousel-prev {
-  left: clamp(12px, 3vw, 36px);
-}
-
-.carousel-next {
-  right: clamp(12px, 3vw, 36px);
-}
-
-.live-card {
-  border: 1px solid var(--line);
-  background: var(--paper-raised);
-  color: var(--ink);
-  min-height: 100%;
-  padding: 1.5rem 1rem;
-  scroll-snap-align: start;
-}
-
-.live-card-image {
-  aspect-ratio: 1;
-  overflow: hidden;
-}
-
-.live-card-image img {
+#live.content-section {
   width: 100%;
-  height: 100%;
+  max-width: none;
+  padding: clamp(110px, 12vw, 150px) var(--gutter) clamp(80px, 10vw, 120px);
+}
+
+.live-content {
+  width: min(1040px, 100%);
+  margin: 0 auto;
+}
+
+.live-toggle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.live-toggle button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #646464;
+  cursor: pointer;
+  font: inherit;
+  transition: color 180ms ease;
+}
+
+.live-toggle button[aria-pressed="true"],
+.live-toggle button:hover,
+.live-toggle button:focus-visible {
+  color: var(--ink);
+}
+
+.live-toggle button:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 5px;
+}
+
+.live-toggle-divider {
+  background: var(--gold-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.live-panel[hidden],
+.show-list[hidden] {
+  display: none;
+}
+
+.live-set-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.live-set-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 180ms ease;
+}
+
+.live-set-card:hover,
+.live-set-card:focus-within {
+  border-color: #a47a1e;
+}
+
+main a.live-set-card::after {
+  content: none;
+}
+
+main a.live-set-card:hover {
+  color: inherit;
+}
+
+.live-set-image {
+  width: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
 }
 
-.live-card-title {
-  margin: 1rem 0;
+.live-set-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 6rem;
+  padding: 0.75rem 1rem 1rem;
+}
+
+.live-set-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 0;
+  line-height: 1.35;
   text-align: center;
 }
 
-.live-card-location {
-  margin: 0.5rem 0;
-  color: var(--ink);
+.live-set-title-text {
+  min-width: 0;
 }
 
-.live-card-youtube-link {
-  position: relative;
-  margin: 0.1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--ink);
+.live-set-youtube {
+  flex: 0 0 auto;
 }
 
-.live-card-youtube-link:hover {
-  color: var(--ink);
+.show-list {
+  display: grid;
+  gap: clamp(1.5rem, 3.2vw, 2.7rem);
+  max-height: min(65svh, 42rem);
+  overflow-y: auto;
 }
 
-.booking-title {
+.show-row {
+  display: grid;
+  grid-template-columns:
+    minmax(6rem, 0.8fr)
+    minmax(0, 1.8fr)
+    minmax(0, 2fr);
+  grid-template-areas: "date location title";
+  align-items: baseline;
+  gap: 1rem;
+  font-size: clamp(1rem, 1.8vw, 1.45rem);
+  line-height: 1.35;
+}
+
+.show-date {
+  grid-area: date;
+}
+
+.show-location {
+  grid-area: location;
+}
+
+.show-title {
+  grid-area: title;
+}
+
+.show-location,
+.show-title {
+  margin: 0;
+}
+
+.show-list-status {
+  margin: 0;
+}
+
+#booking.content-section {
+  --split-left-background: url("./image/background/weng.png");
+  --split-left-opacity: 0.1;
+  --split-right-background: url("./image/background/contact.JPG");
+  width: 100%;
+  max-width: none;
+  min-height: calc(100svh - 4rem);
+  padding: 0;
+  margin-bottom: calc(-1 * clamp(70px, 9vw, 100px));
+  scroll-margin-top: 4rem;
+}
+
+.booking-panel {
   display: flex;
+  min-width: 0;
+}
+
+.booking-panel--content {
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 0.4rem;
+  padding: clamp(2rem, 5vw, 5rem);
+  padding-bottom: clamp(8rem, 15vw, 13rem);
+}
+
+.booking-content {
+  width: min(100%, 34rem);
+}
+
+.booking-label,
+.booking-email {
+  display: block;
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  line-height: 1.5;
 }
 
 .booking-email {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  width: fit-content;
+  transition: filter 180ms ease;
+}
+
+.booking-email::after {
+  content: none;
 }
 
 .booking-email:hover {
-  color: var(--ink);
-}
-
-.site-footer {
-  display: flex;
-  justify-content: center;
-  padding: 3rem;
-  border-top: 1px solid var(--line);
-  text-align: center;
-}
-
-.footer-mark {
-  width: min(220px, 60vw);
-  height: auto;
+  color: transparent;
+  filter: brightness(0.85);
 }
 
 @media (max-width: 880px) {
   .site-nav {
-    justify-content: center;
+    justify-content: flex-start;
+    min-height: 3.5rem;
+    padding: 0.5rem;
   }
   .nav-mark {
+    position: absolute;
+    left: 50%;
+    display: inline-flex;
+    height: 3rem;
+    transform: translateX(-50%);
+  }
+  .site-nav nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
     display: none;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--line);
+    border-top: 0;
+    background: #000;
+  }
+  .site-nav.is-open nav {
+    display: flex;
+  }
+  .site-nav nav a {
+    display: flex;
+    align-items: center;
+    min-height: 3.15rem;
+    padding: 0.5rem 0;
+    font-size: 0.8rem;
+  }
+  .nav-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.625rem;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .nav-menu-toggle img {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+  }
+  .nav-menu-toggle:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
   }
   .section-heading,
   .listen-grid,
-  .about-grid,
   .booking-panel {
     grid-template-columns: 1fr;
+  }
+  .split-background,
+  .split-background--reverse {
+    grid-template-columns: 1fr;
+  }
+  #listen.content-section {
+    grid-template-columns: 1fr;
+  }
+  #booking.content-section {
+    grid-template-columns: 1fr;
+    min-height: 75svh;
+  }
+  .booking-panel--content {
+    grid-row: 2;
+    min-height: 0;
+    padding: clamp(3rem, 5vw, 5rem) var(--gutter);
+  }
+  .booking-panel--image {
+    grid-row: 1;
+    min-height: 0;
+    aspect-ratio: 1;
+    padding: 0;
+  }
+  #about.content-section {
+    min-height: 0;
+  }
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .about-panel--left,
+  .about-panel--right {
+    grid-column: 1;
+  }
+  .split-background--reverse .split-background__panel--left,
+  .split-background--reverse .split-background__panel--right {
+    grid-column: 1;
+  }
+  .about-panel--left {
+    grid-row: 2;
+    min-height: 0;
+  }
+  .about-panel--right {
+    grid-row: 1;
+    min-height: 0;
+    aspect-ratio: 1;
+  }
+  .music-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .music-panel--image,
+  .music-panel--content {
+    grid-column: 1;
+  }
+  .music-panel--image {
+    grid-row: 2;
+    min-height: 0;
+    aspect-ratio: 1;
+    padding: 0;
+  }
+  .music-panel--content {
+    grid-row: 1;
+  }
+  .music-releases {
+    max-height: none;
+    overflow: visible;
   }
   .listen-item {
     grid-template-columns: 1fr;
   }
-  .portrait-frame {
-    margin-inline: auto;
-    margin-bottom: 2rem;
-  }
-}
 
-@media (max-width: 560px) {
+  .about-panel--left {
+    padding-block: clamp(6rem, 10vw, 8rem) 3rem;
+  }
+
+  .music-panel--content,
+  #live.content-section,
+  .booking-panel--content {
+    padding-block: clamp(6rem, 10vw, 8rem);
+  }
   .about-social {
-    grid-template-columns: 1fr;
-    row-gap: 1rem;
+    justify-content: center;
   }
-  .social-col {
-    gap: 1rem;
+  .music-releases {
+    grid-auto-flow: column;
+    grid-auto-columns: 20rem;
+    grid-template-columns: none;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
   }
-  .live-carousel {
-    grid-template-columns: repeat(3, minmax(250px, 82vw));
-    grid-auto-columns: minmax(250px, 82vw);
+  .music-release {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
   }
-  .booking-title {
-    flex-direction: column;
-    align-items: flex-start;
+  .music-release-cover {
+    width: 17rem;
+    height: auto;
+  }
+  .music-release-info {
+    text-align: center;
+  }
+  .music-platforms {
+    justify-content: center;
+  }
+  .music-title {
+    display: block;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+  .live-toggle {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+  }
+  .live-set-grid {
+    grid-auto-flow: column;
+    grid-auto-columns: 17rem;
+    grid-template-columns: none;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+  .show-row {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "date" "location" "title";
+    gap: 0.25rem;
+    font-size: clamp(0.72rem, 2.8vw, 1rem);
+  }
+  .show-row > * {
+    min-width: 0;
+  }
+  .show-list {
+    max-height: 23rem;
   }
 }

@@ -46,76 +46,73 @@
   <body>
     <header class="site-nav" aria-label="Primary navigation">
       <a class="nav-mark" href="#top" aria-label="WENG home">
-        <img src="./reference-image/logo-transparent.png" alt="WENG logo" />
+        <img src="./image/logo-transparent.png" alt="WENG logo" />
       </a>
-      <nav>
+      <button
+        class="nav-menu-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+      >
+        <img src="./icon/menu-white.png" alt="" />
+      </button>
+      <nav id="primary-navigation">
         <a href="#about">About</a>
         <a href="#listen">Music</a>
-        <a href="#live">Live</a>
+        <a href="#live">Shows</a>
         <a href="#booking">Contact</a>
       </nav>
     </header>
 
     <main>
-      <section id="about" class="content-section" aria-labelledby="about-title">
-        <h2>01 — About</h2>
+      <section
+        id="about"
+        class="content-section split-background"
+        aria-labelledby="about-title"
+      >
         <div class="about-grid">
-          <figure class="portrait-frame">
-            <img
-              src="./reference-image/profile.jpg"
-              alt="WENG performing as a DJ at night"
-              loading="lazy"
-              width="4257"
-              height="6385"
-            />
-          </figure>
-
-          <div>
-            <h1 id="about-title">WENG</h1>
-            <p>is a schranz & hard techno artist based in Canada.</p>
-            <p>
-              Trained in classical piano and inspired by rock & metal, she
-              channels the emotional depth and darkness of these influences into
-              her music.
-            </p>
-            <div class="about-social" aria-label="Social links">
-              <div class="social-col">
+          <div
+            class="about-panel about-panel--left split-background__panel split-background__panel--left"
+          >
+            <div class="about-content">
+              <h1 id="about-title">WENG</h1>
+              <p class="about-kicker">
+                <span class="gold-gradient-text"
+                  >SCHRANZ &amp; HARD TECHNO |</span
+                >
+                <span class="gold-gradient-text">CANADA</span>
+              </p>
+              <p class="about-description">
+                Trained in classical piano and inspired by rock and metal, she
+                channels the emotional depth and darkness of these influences
+                into her music.
+              </p>
+              <div class="about-social" aria-label="Social links">
                 <a
                   href="https://www.youtube.com/channel/UCwphUlFFtzge_2PGuWzeAfA"
                   data-track="about-youtube"
                   class="social-link"
                   target="_blank"
                 >
-                  <img src="icon/youtube.png" alt="" class="social-icon" />
+                  <span
+                    class="social-icon"
+                    style="--icon-mask: url(&quot;icon/youtube-white.png&quot;)"
+                    aria-hidden="true"
+                  ></span>
                   <h4>Youtube</h4>
                 </a>
-                <a
-                  href="https://www.instagram.com/weng.techno/"
-                  data-track="about-instagram"
-                  class="social-link"
-                  target="_blank"
-                >
-                  <img src="icon/instagram.png" alt="" class="social-icon" />
-                  <h4>Instagram</h4>
-                </a>
-                <a
-                  href="https://www.tiktok.com/@weng.techno"
-                  data-track="about-tiktok"
-                  class="social-link"
-                  target="_blank"
-                >
-                  <img src="icon/tik-tok.png" alt="" class="social-icon" />
-                  <h4>Tiktok</h4>
-                </a>
-              </div>
-              <div class="social-col">
                 <a
                   href="https://open.spotify.com/artist/5yDn9s7rh5MhnkVrGus3yS?si=4GYKFMDGSzi11XfZP3-YUA"
                   data-track="about-spotify"
                   class="social-link"
                   target="_blank"
                 >
-                  <img src="icon/spotify-logo.png" alt="" class="social-icon" />
+                  <span
+                    class="social-icon"
+                    style="--icon-mask: url(&quot;icon/spotify-white.png&quot;)"
+                    aria-hidden="true"
+                  ></span>
                   <h4>Spotify</h4>
                 </a>
                 <a
@@ -124,137 +121,388 @@
                   class="social-link"
                   target="_blank"
                 >
-                  <img src="icon/soundcloud.png" alt="" class="social-icon" />
+                  <span
+                    class="social-icon"
+                    style="
+                      --icon-mask: url(&quot;icon/soundcloud-white.png&quot;);
+                    "
+                    aria-hidden="true"
+                  ></span>
                   <h4>SoundCloud</h4>
                 </a>
+                <a
+                  href="https://www.instagram.com/weng.techno/"
+                  data-track="about-instagram"
+                  class="social-link"
+                  target="_blank"
+                >
+                  <span
+                    class="social-icon"
+                    style="
+                      --icon-mask: url(&quot;icon/instagram-white.png&quot;);
+                    "
+                    aria-hidden="true"
+                  ></span>
+                  <h4>Instagram</h4>
+                </a>
+                <a
+                  href="https://www.tiktok.com/@weng.techno"
+                  data-track="about-tiktok"
+                  class="social-link"
+                  target="_blank"
+                >
+                  <span
+                    class="social-icon"
+                    style="--icon-mask: url(&quot;icon/tiktok-white.png&quot;)"
+                    aria-hidden="true"
+                  ></span>
+                  <h4>Tiktok</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="about-panel about-panel--right split-background__panel split-background__panel--right"
+            aria-hidden="true"
+          ></div>
+        </div>
+      </section>
+
+      <section
+        id="listen"
+        class="content-section split-background music-section"
+        aria-labelledby="music-title"
+      >
+        <div class="music-grid">
+          <div
+            class="music-panel music-panel--image split-background__panel split-background__panel--left"
+            aria-hidden="true"
+          ></div>
+          <div
+            class="music-panel music-panel--content split-background__panel split-background__panel--right"
+          >
+            <div class="music-content">
+              <h2 id="music-title" class="music-title">Music</h2>
+              <div
+                class="music-releases"
+                role="region"
+                aria-label="Music releases"
+                tabindex="0"
+              >
+                <article class="music-release">
+                  <img
+                    class="music-release-cover"
+                    src="./image/music/winter%20wind.jpg"
+                    alt="Winter Wind cover art"
+                  />
+                  <div class="music-release-info">
+                    <h3 class="music-release-title">Winter Wind</h3>
+                    <p class="music-release-description">
+                      An intense schranz storm inspired by the dark melodies of
+                      Chopin’s classical piano piece Winter Wind.
+                    </p>
+                    <div
+                      class="music-platforms"
+                      aria-label="Listen to Winter Wind"
+                    >
+                      <a
+                        href="https://open.spotify.com/track/4hzuXe5DjKI2OWJsI3U3Za?1011ljwEH"
+                        aria-label="Winter Wind on Spotify"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span
+                          class="music-platform-icon"
+                          style="
+                            --icon-mask: url(&quot;./icon/spotify-white.png&quot;);
+                          "
+                          aria-hidden="true"
+                        ></span>
+                      </a>
+                      <a
+                        href="https://geo.music.apple.com/au/album/winter-wind/6817598553?i=6817598558&amp;app=music&amp;ls=1&amp;ct=FFM_916f84482563ec20b4cd7e69d94202ee&amp;at=1001loWk"
+                        aria-label="Winter Wind on Apple Music"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span
+                          class="music-platform-icon music-platform-icon--apple"
+                          style="
+                            --icon-mask: url(&quot;./icon/apple-music-white.png&quot;);
+                          "
+                          aria-hidden="true"
+                        ></span>
+                      </a>
+                      <a
+                        href="https://soundcloud.com/wengtechno/winter-wind-1?utm_medium=api&amp;utm_campaign=social_sharing&amp;utm_source=id_172153"
+                        aria-label="Winter Wind on SoundCloud"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span
+                          class="music-platform-icon"
+                          style="
+                            --icon-mask: url(&quot;./icon/soundcloud-white.png&quot;);
+                          "
+                          aria-hidden="true"
+                        ></span>
+                      </a>
+                      <a
+                        href="https://www.youtube.com/watch?v=67d5aI8V0mo&amp;src=FFM&amp;lid=00000000-6abc-7998-2700-002c00bfed22&amp;cid=eef267f6-3f51-5d46-a717-711ac12bcf76"
+                        aria-label="Winter Wind on YouTube"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span
+                          class="music-platform-icon"
+                          style="
+                            --icon-mask: url(&quot;./icon/youtube-white.png&quot;);
+                          "
+                          aria-hidden="true"
+                        ></span>
+                      </a>
+                      <a
+                        href="https://downloads.wengtechno.com/WENG%20-%20Winter%20Wind%20(Original%20Mix)%20MASTER.wav"
+                        aria-label="Download Winter Wind"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download
+                      >
+                        <span
+                          class="music-platform-icon music-platform-icon--download"
+                          style="
+                            --icon-mask: url(&quot;./icon/download-white.png&quot;);
+                          "
+                          aria-hidden="true"
+                        ></span>
+                      </a>
+                    </div>
+                  </div>
+                </article>
+                <article class="music-release">
+                  <img
+                    class="music-release-cover"
+                    src="./image/music/when%20will%20we%20unite.png"
+                    alt="When Will We Unite cover art"
+                  />
+                  <div class="music-release-info">
+                    <h3 class="music-release-title">WHen Will We Unite</h3>
+                    <p class="music-release-description">
+                      An emotional schranz journey about two lovers separated by
+                      distance but longing to be together.
+                    </p>
+                    <div
+                      class="music-platforms"
+                      aria-label="Listen to When Will We Unite"
+                    >
+                      <a
+                        href="https://api.ffm.to/sl/e/ps/when-will-we-unite?cd=eyJ1YSI6eyJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8yNi41LjIgU2FmYXJpLzYwNS4xLjE1IiwiYnJvd3NlciI6eyJuYW1lIjoiU2FmYXJpIiwidmVyc2lvbiI6IjI2LjUuMiIsIm1ham9yIjoiMjYifSwiY3B1Ijp7fSwiZGV2aWNlIjp7Im1vZGVsIjoiTWFjaW50b3NoIiwidmVuZG9yIjoiQXBwbGUifSwiZW5naW5lIjp7Im5hbWUiOiJXZWJLaXQiLCJ2ZXJzaW9uIjoiNjA1LjEuMTUifSwib3MiOnsibmFtZSI6Im1hY09TIiwidmVyc2lvbiI6IjEwLjE1LjcifX0sImNsaWVudCI6eyJyaWQiOiJmODBmM2IzMS0xZDExLTQwOTMtOWM1Ny1iNjY3NDJmMzk2MmYiLCJzaWQiOiI3NjRjM2NhYi03YzU5LTQ1YjQtODcwMS1hODJlMTFhNThjNTciLCJpcCI6IjY0LjEzNy4xNTguMzgiLCJyZWYiOiJodHRwczovL2RpdHRvLmZtLyIsImhvc3QiOiJkaXR0by5mbSIsImxhbmciOiJlbi1DQSIsImlwQ291bnRyeSI6IkNBIn0sImlzV2VicFN1cHBvcnRlZCI6ZmFsc2UsImdkcHJFbmZvcmNlIjp0cnVlLCJjb3VudHJ5Q29kZSI6IkNBIiwiaXNCb3QiOmZhbHNlLCJ1c2VBZmYiOiJvcmlnaW4iLCJ2aWQiOiJhZTRmYjY4NC1mOThmLTRmODEtOGUwYy0zN2JlNDRjMTdhNGEiLCJpZCI6IjZhYmM3YjlkMzQwMDAwMjgwMDBiMDc5MiIsInBydiI6ZmFsc2UsImlzUHJlUiI6dHJ1ZSwidHpvIjpudWxsLCJjaCI6bnVsbCwiYW4iOm51bGwsImRlc3RVcmwiOiJodHRwczovL2FjY291bnRzLnNwb3RpZnkuY29tL2F1dGhvcml6ZT9jbGllbnRfaWQ9NjZkM2NkYjQ0ODA3NGEwZDg4ZTliMDhiYWFmMmYzZDcmcmVzcG9uc2VfdHlwZT1jb2RlJnJlZGlyZWN0X3VyaT1odHRwcyUzQSUyRiUyRmFwaS5mZm0udG8lMkZ3ZWJob29rJTJGc3BvdGlmeSUyRmF1dGhvcml6ZSZzY29wZT11c2VyLXJlYWQtcHJpdmF0ZSUyMHVzZXItcmVhZC1iaXJ0aGRhdGUlMjB1c2VyLXJlYWQtZW1haWwlMjB1c2VyLWxpYnJhcnktbW9kaWZ5JTIwdXNlci1saWJyYXJ5LXJlYWQlMjB1c2VyLXJlYWQtcmVjZW50bHktcGxheWVkJTIwdXNlci1mb2xsb3ctcmVhZCUyMHVzZXItZm9sbG93LW1vZGlmeSUyMHVzZXItdG9wLXJlYWQlMjBwbGF5bGlzdC1tb2RpZnktcHVibGljJTIwcGxheWxpc3QtcmVhZC1wcml2YXRlJTIwcGxheWxpc3QtbW9kaWZ5LXByaXZhdGUmc3RhdGU9ZXlKa1lreHBibXRKWkNJNklqWmhZbU0zWWpsa016UXdNREF3TWpnd01EQmlNRGM1TWlJc0ltRmpkR2x2YmxSNWNHVWlPbTUxYkd3c0ltTjBZU0k2SWxCeVpTMVRZWFpsSWl3aWRYTmxja052ZFc1MGNua2lPaUpEUVNJc0luTm9iM0owU1dRaU9pSjNhR1Z1TFhkcGJHd3RkMlV0ZFc1cGRHVWlMQ0prYjIxaGFXNGlPaUpvZEhSd2N6b3ZMMlJwZEhSdkxtWnRJaXdpYzJWeWRtbGpaVTVoYldVaU9pSnpjRzkwYVdaNUlpd2ljSEp2WkhWamRDSTZJbk50WVhKMGJHbHVheUlzSW5KbFpHbHlaV04wVlhKcElqb2lhSFIwY0hNNkx5OWthWFIwYnk1bWJTOTNhR1Z1TFhkcGJHd3RkMlV0ZFc1cGRHVXZjSEpsYzJGMlpXTmhiR3hpWVdOcklpd2labUZzYkdKaFkydFZjbXdpT201MWJHd3NJbWx6VUhKbFVtVnNaV0Z6WlNJNmRISjFaU3dpYVhOR2RYUjFjbVZTWld4bFlYTmxJanAwY25WbExDSmhjblJwYzNSSlpDSTZJalpoWW1NM09UazNNbVF3TURBd00ySXdNRGN5WkRBMk1DSXNJbUZ5ZEdsemRFOTNibVZ5SWpvaU5XTTFNR0kxTVdReE5EQXdNREF4T1RBd05qZzJPRGt4SWl3aVlXTjBhVzl1U1dRaU9tNTFiR3dzSW1ka2NISkZibVp2Y21ObElqcDBjblZsTENKc2FXNXJWSGx3WlNJNmJuVnNiQ3dpZFhObGNrbFFJam9pTmpRdU1UTTNMakUxT0M0ek9DSXNJbkpsZDJGeVpGVnpaWEpKWkNJNmJuVnNiQ3dpY21WbVpYSnlZV3hKWkNJNmJuVnNiQ3dpZFhWcFpDSTZJbUZsTkdaaU5qZzBMV1k1T0dZdE5HWTRNUzA0WlRCakxUTTNZbVUwTkdNeE4yRTBZU0o5JjEwMTFsandFSCIsInNydmMiOiJzcG90aWZ5IiwicHJvZHVjdCI6InNtYXJ0bGluayIsInNob3J0SWQiOiJ3aGVuLXdpbGwtd2UtdW5pdGUiLCJpc0F1dGhvcml6YXRpb25SZXF1aXJlZCI6dHJ1ZSwib3duZXIiOiI1YzUwYjUxZDE0MDAwMDE5MDA2ODY4OTEiLCJ0ZW5hbnQiOiI1ZDJjMjk2M2YwZDUxZWViZDI0ZTc3ODciLCJhciI6IjZhYmM3OTk3MmQwMDAwM2IwMDcyZDA2MCIsImlzU2hvcnRMaW5rIjpmYWxzZSwibmF0aXZlIjpmYWxzZX0"
+                        aria-label="When Will We Unite on Spotify"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span
+                          class="music-platform-icon"
+                          style="
+                            --icon-mask: url(&quot;./icon/spotify-white.png&quot;);
+                          "
+                          aria-hidden="true"
+                        ></span>
+                      </a>
+                      <a
+                        href="https://api.ffm.to/sl/e/ps/when-will-we-unite?cd=eyJ1YSI6eyJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8yNi41LjIgU2FmYXJpLzYwNS4xLjE1IiwiYnJvd3NlciI6eyJuYW1lIjoiU2FmYXJpIiwidmVyc2lvbiI6IjI2LjUuMiIsIm1ham9yIjoiMjYifSwiY3B1Ijp7fSwiZGV2aWNlIjp7Im1vZGVsIjoiTWFjaW50b3NoIiwidmVuZG9yIjoiQXBwbGUifSwiZW5naW5lIjp7Im5hbWUiOiJXZWJLaXQiLCJ2ZXJzaW9uIjoiNjA1LjEuMTUifSwib3MiOnsibmFtZSI6Im1hY09TIiwidmVyc2lvbiI6IjEwLjE1LjcifX0sImNsaWVudCI6eyJyaWQiOiJmODBmM2IzMS0xZDExLTQwOTMtOWM1Ny1iNjY3NDJmMzk2MmYiLCJzaWQiOiI3NjRjM2NhYi03YzU5LTQ1YjQtODcwMS1hODJlMTFhNThjNTciLCJpcCI6IjY0LjEzNy4xNTguMzgiLCJyZWYiOiJodHRwczovL2RpdHRvLmZtLyIsImhvc3QiOiJkaXR0by5mbSIsImxhbmciOiJlbi1DQSIsImlwQ291bnRyeSI6IkNBIn0sImlzV2VicFN1cHBvcnRlZCI6ZmFsc2UsImdkcHJFbmZvcmNlIjp0cnVlLCJjb3VudHJ5Q29kZSI6IkNBIiwiaXNCb3QiOmZhbHNlLCJ1c2VBZmYiOiJvcmlnaW4iLCJ2aWQiOiJhZTRmYjY4NC1mOThmLTRmODEtOGUwYy0zN2JlNDRjMTdhNGEiLCJpZCI6IjZhYmM3YjlkMzQwMDAwMjgwMDBiMDc5MiIsInBydiI6ZmFsc2UsImlzUHJlUiI6dHJ1ZSwidHpvIjpudWxsLCJjaCI6bnVsbCwiYW4iOm51bGwsImRlc3RVcmwiOiJodHRwczovL2FwaS5mZm0udG8vd2ViaG9vay9hcHBsZS9hdXRob3JpemU_c3RhdGU9ZXlKa1lreHBibXRKWkNJNklqWmhZbU0zWWpsa016UXdNREF3TWpnd01EQmlNRGM1TWlJc0ltRmpkR2x2YmxSNWNHVWlPbTUxYkd3c0ltTjBZU0k2SWxCeVpTMUJaR1FpTENKMWMyVnlRMjkxYm5SeWVTSTZJa05CSWl3aWMyaHZjblJKWkNJNkluZG9aVzR0ZDJsc2JDMTNaUzExYm1sMFpTSXNJbVJ2YldGcGJpSTZJbWgwZEhCek9pOHZaR2wwZEc4dVptMGlMQ0p6WlhKMmFXTmxUbUZ0WlNJNkltRndjR3hsSWl3aWNISnZaSFZqZENJNkluTnRZWEowYkdsdWF5SXNJbkpsWkdseVpXTjBWWEpwSWpvaWFIUjBjSE02THk5a2FYUjBieTVtYlM5M2FHVnVMWGRwYkd3dGQyVXRkVzVwZEdVdmNISmxjMkYyWldOaGJHeGlZV05ySWl3aVptRnNiR0poWTJ0VmNtd2lPbTUxYkd3c0ltbHpVSEpsVW1Wc1pXRnpaU0k2ZEhKMVpTd2lhWE5HZFhSMWNtVlNaV3hsWVhObElqcDBjblZsTENKaGNuUnBjM1JKWkNJNklqWmhZbU0zT1RrM01tUXdNREF3TTJJd01EY3laREEyTUNJc0ltRnlkR2x6ZEU5M2JtVnlJam9pTldNMU1HSTFNV1F4TkRBd01EQXhPVEF3TmpnMk9Ea3hJaXdpWVdOMGFXOXVTV1FpT201MWJHd3NJbWRrY0hKRmJtWnZjbU5sSWpwMGNuVmxMQ0pzYVc1clZIbHdaU0k2Ym5Wc2JDd2lkWE5sY2tsUUlqb2lOalF1TVRNM0xqRTFPQzR6T0NJc0luSmxkMkZ5WkZWelpYSkpaQ0k2Ym5Wc2JDd2ljbVZtWlhKeVlXeEpaQ0k2Ym5Wc2JDd2lkWFZwWkNJNkltRmxOR1ppTmpnMExXWTVPR1l0TkdZNE1TMDRaVEJqTFRNM1ltVTBOR014TjJFMFlTSjkiLCJzcnZjIjoiYXBwbGUiLCJwcm9kdWN0Ijoic21hcnRsaW5rIiwic2hvcnRJZCI6IndoZW4td2lsbC13ZS11bml0ZSIsImlzQXV0aG9yaXphdGlvblJlcXVpcmVkIjp0cnVlLCJvd25lciI6IjVjNTBiNTFkMTQwMDAwMTkwMDY4Njg5MSIsInRlbmFudCI6IjVkMmMyOTYzZjBkNTFlZWJkMjRlNzc4NyIsImFyIjoiNmFiYzc5OTcyZDAwMDAzYjAwNzJkMDYwIiwiaXNTaG9ydExpbmsiOmZhbHNlLCJuYXRpdmUiOmZhbHNlfQ"
+                        aria-label="When Will We Unite on Apple Music"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span
+                          class="music-platform-icon music-platform-icon--apple"
+                          style="
+                            --icon-mask: url(&quot;./icon/apple-music-white.png&quot;);
+                          "
+                          aria-hidden="true"
+                        ></span>
+                      </a>
+                      <a
+                        href="https://api.ffm.to/sl/e/ps/when-will-we-unite?cd=eyJ1YSI6eyJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8yNi41LjIgU2FmYXJpLzYwNS4xLjE1IiwiYnJvd3NlciI6eyJuYW1lIjoiU2FmYXJpIiwidmVyc2lvbiI6IjI2LjUuMiIsIm1ham9yIjoiMjYifSwiY3B1Ijp7fSwiZGV2aWNlIjp7Im1vZGVsIjoiTWFjaW50b3NoIiwidmVuZG9yIjoiQXBwbGUifSwiZW5naW5lIjp7Im5hbWUiOiJXZWJLaXQiLCJ2ZXJzaW9uIjoiNjA1LjEuMTUifSwib3MiOnsibmFtZSI6Im1hY09TIiwidmVyc2lvbiI6IjEwLjE1LjcifX0sImNsaWVudCI6eyJyaWQiOiJmODBmM2IzMS0xZDExLTQwOTMtOWM1Ny1iNjY3NDJmMzk2MmYiLCJzaWQiOiI3NjRjM2NhYi03YzU5LTQ1YjQtODcwMS1hODJlMTFhNThjNTciLCJpcCI6IjY0LjEzNy4xNTguMzgiLCJyZWYiOiJodHRwczovL2RpdHRvLmZtLyIsImhvc3QiOiJkaXR0by5mbSIsImxhbmciOiJlbi1DQSIsImlwQ291bnRyeSI6IkNBIn0sImlzV2VicFN1cHBvcnRlZCI6ZmFsc2UsImdkcHJFbmZvcmNlIjp0cnVlLCJjb3VudHJ5Q29kZSI6IkNBIiwiaXNCb3QiOmZhbHNlLCJ1c2VBZmYiOiJvcmlnaW4iLCJ2aWQiOiJhZTRmYjY4NC1mOThmLTRmODEtOGUwYy0zN2JlNDRjMTdhNGEiLCJpZCI6IjZhYmM3YjlkMzQwMDAwMjgwMDBiMDc5MiIsInBydiI6ZmFsc2UsImlzUHJlUiI6dHJ1ZSwidHpvIjpudWxsLCJjaCI6bnVsbCwiYW4iOm51bGwsImRlc3RVcmwiOiJodHRwczovL3NlY3VyZS5zb3VuZGNsb3VkLmNvbS9hdXRob3JpemU_Y2xpZW50X2lkPTNmNmE0NzI4MjJkY2U5ODRmYmJlZWNmYTM4ZGM4N2E4JmNvZGVfY2hhbGxlbmdlX21ldGhvZD1TMjU2JmNvZGVfY2hhbGxlbmdlPVJNOEJBVlNab2t6elA5dGpkcjMtZ0xueWhxRDJJRjlOQ0o4THYtUzYxWncmcmVzcG9uc2VfdHlwZT1jb2RlJnJlZGlyZWN0X3VyaT1odHRwcyUzQSUyRiUyRmFwaS5mZm0udG8lMkZ3ZWJob29rJTJGc291bmRjbG91ZCUyRmF1dGhvcml6ZSZzdGF0ZT1leUprWWt4cGJtdEpaQ0k2SWpaaFltTTNZamxrTXpRd01EQXdNamd3TURCaU1EYzVNaUlzSW1GamRHbHZibFI1Y0dVaU9tNTFiR3dzSW1OMFlTSTZJbEJ5WlMxVFlYWmxJaXdpZFhObGNrTnZkVzUwY25raU9pSkRRU0lzSW5Ob2IzSjBTV1FpT2lKM2FHVnVMWGRwYkd3dGQyVXRkVzVwZEdVaUxDSmtiMjFoYVc0aU9pSm9kSFJ3Y3pvdkwyUnBkSFJ2TG1adElpd2ljMlZ5ZG1salpVNWhiV1VpT2lKemIzVnVaR05zYjNWa0lpd2ljSEp2WkhWamRDSTZJbk50WVhKMGJHbHVheUlzSW5KbFpHbHlaV04wVlhKcElqb2lhSFIwY0hNNkx5OWthWFIwYnk1bWJTOTNhR1Z1TFhkcGJHd3RkMlV0ZFc1cGRHVXZjSEpsYzJGMlpXTmhiR3hpWVdOcklpd2labUZzYkdKaFkydFZjbXdpT201MWJHd3NJbWx6VUhKbFVtVnNaV0Z6WlNJNmRISjFaU3dpYVhOR2RYUjFjbVZTWld4bFlYTmxJanAwY25WbExDSmhjblJwYzNSSlpDSTZJalpoWW1NM09UazNNbVF3TURBd00ySXdNRGN5WkRBMk1DSXNJbUZ5ZEdsemRFOTNibVZ5SWpvaU5XTTFNR0kxTVdReE5EQXdNREF4T1RBd05qZzJPRGt4SWl3aVlXTjBhVzl1U1dRaU9tNTFiR3dzSW1ka2NISkZibVp2Y21ObElqcDBjblZsTENKc2FXNXJWSGx3WlNJNmJuVnNiQ3dpZFhObGNrbFFJam9pTmpRdU1UTTNMakUxT0M0ek9DSXNJbkpsZDJGeVpGVnpaWEpKWkNJNmJuVnNiQ3dpY21WbVpYSnlZV3hKWkNJNmJuVnNiQ3dpZFhWcFpDSTZJbUZsTkdaaU5qZzBMV1k1T0dZdE5HWTRNUzA0WlRCakxUTTNZbVUwTkdNeE4yRTBZU0o5Iiwic3J2YyI6InNvdW5kY2xvdWQiLCJwcm9kdWN0Ijoic21hcnRsaW5rIiwic2hvcnRJZCI6IndoZW4td2lsbC13ZS11bml0ZSIsImlzQXV0aG9yaXphdGlvblJlcXVpcmVkIjp0cnVlLCJvd25lciI6IjVjNTBiNTFkMTQwMDAwMTkwMDY4Njg5MSIsInRlbmFudCI6IjVkMmMyOTYzZjBkNTFlZWJkMjRlNzc4NyIsImFyIjoiNmFiYzc5OTcyZDAwMDAzYjAwNzJkMDYwIiwiaXNTaG9ydExpbmsiOmZhbHNlLCJuYXRpdmUiOmZhbHNlfQ"
+                        aria-label="When Will We Unite on SoundCloud"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span
+                          class="music-platform-icon"
+                          style="
+                            --icon-mask: url(&quot;./icon/soundcloud-white.png&quot;);
+                          "
+                          aria-hidden="true"
+                        ></span>
+                      </a>
+                      <a
+                        href="https://api.ffm.to/sl/e/ps/when-will-we-unite?cd=eyJ1YSI6eyJ1YSI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzYwNS4xLjE1IChLSFRNTCwgbGlrZSBHZWNrbykgVmVyc2lvbi8yNi41LjIgU2FmYXJpLzYwNS4xLjE1IiwiYnJvd3NlciI6eyJuYW1lIjoiU2FmYXJpIiwidmVyc2lvbiI6IjI2LjUuMiIsIm1ham9yIjoiMjYifSwiY3B1Ijp7fSwiZGV2aWNlIjp7Im1vZGVsIjoiTWFjaW50b3NoIiwidmVuZG9yIjoiQXBwbGUifSwiZW5naW5lIjp7Im5hbWUiOiJXZWJLaXQiLCJ2ZXJzaW9uIjoiNjA1LjEuMTUifSwib3MiOnsibmFtZSI6Im1hY09TIiwidmVyc2lvbiI6IjEwLjE1LjcifX0sImNsaWVudCI6eyJyaWQiOiJmODBmM2IzMS0xZDExLTQwOTMtOWM1Ny1iNjY3NDJmMzk2MmYiLCJzaWQiOiI3NjRjM2NhYi03YzU5LTQ1YjQtODcwMS1hODJlMTFhNThjNTciLCJpcCI6IjY0LjEzNy4xNTguMzgiLCJyZWYiOiJodHRwczovL2RpdHRvLmZtLyIsImhvc3QiOiJkaXR0by5mbSIsImxhbmciOiJlbi1DQSIsImlwQ291bnRyeSI6IkNBIn0sImlzV2VicFN1cHBvcnRlZCI6ZmFsc2UsImdkcHJFbmZvcmNlIjp0cnVlLCJjb3VudHJ5Q29kZSI6IkNBIiwiaXNCb3QiOmZhbHNlLCJ1c2VBZmYiOiJvcmlnaW4iLCJ2aWQiOiJhZTRmYjY4NC1mOThmLTRmODEtOGUwYy0zN2JlNDRjMTdhNGEiLCJpZCI6IjZhYmM3YjlkMzQwMDAwMjgwMDBiMDc5MiIsInBydiI6ZmFsc2UsImlzUHJlUiI6dHJ1ZSwidHpvIjpudWxsLCJjaCI6bnVsbCwiYW4iOm51bGwsImRlc3RVcmwiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vby9vYXV0aDIvdjIvYXV0aD9hY2Nlc3NfdHlwZT1vZmZsaW5lJmluY2x1ZGVfZ3JhbnRlZF9zY29wZXM9dHJ1ZSZzdGF0ZT1leUprWWt4cGJtdEpaQ0k2SWpaaFltTTNZamxrTXpRd01EQXdNamd3TURCaU1EYzVNaUlzSW1GamRHbHZibFI1Y0dVaU9tNTFiR3dzSW1OMFlTSTZJbEJ5WlMxVFlYWmxJaXdpZFhObGNrTnZkVzUwY25raU9pSkRRU0lzSW5Ob2IzSjBTV1FpT2lKM2FHVnVMWGRwYkd3dGQyVXRkVzVwZEdVaUxDSmtiMjFoYVc0aU9pSm9kSFJ3Y3pvdkwyUnBkSFJ2TG1adElpd2ljMlZ5ZG1salpVNWhiV1VpT2lKNWIzVjBkV0psYlhWemFXTWlMQ0p3Y205a2RXTjBJam9pYzIxaGNuUnNhVzVySWl3aWNtVmthWEpsWTNSVmNta2lPaUpvZEhSd2N6b3ZMMlJwZEhSdkxtWnRMM2RvWlc0dGQybHNiQzEzWlMxMWJtbDBaUzl3Y21WellYWmxZMkZzYkdKaFkyc2lMQ0ptWVd4c1ltRmphMVZ5YkNJNmJuVnNiQ3dpYVhOUWNtVlNaV3hsWVhObElqcDBjblZsTENKcGMwWjFkSFZ5WlZKbGJHVmhjMlVpT25SeWRXVXNJbUZ5ZEdsemRFbGtJam9pTm1GaVl6YzVPVGN5WkRBd01EQXpZakF3TnpKa01EWXdJaXdpWVhKMGFYTjBUM2R1WlhJaU9pSTFZelV3WWpVeFpERTBNREF3TURFNU1EQTJPRFk0T1RFaUxDSmhZM1JwYjI1SlpDSTZiblZzYkN3aVoyUndja1Z1Wm05eVkyVWlPblJ5ZFdVc0lteHBibXRVZVhCbElqcHVkV3hzTENKMWMyVnlTVkFpT2lJMk5DNHhNemN1TVRVNExqTTRJaXdpY21WM1lYSmtWWE5sY2tsa0lqcHVkV3hzTENKeVpXWmxjbkpoYkVsa0lqcHVkV3hzTENKMWRXbGtJam9pWVdVMFptSTJPRFF0WmprNFppMDBaamd4TFRobE1HTXRNemRpWlRRMFl6RTNZVFJoSW4wJnJlc3BvbnNlX3R5cGU9Y29kZSZjb25zZW50PVBsZWFzZSUyMGFsbG93JnByb21wdD1jb25zZW50JnNjb3BlPWh0dHBzJTNBJTJGJTJGd3d3Lmdvb2dsZWFwaXMuY29tJTJGYXV0aCUyRnlvdXR1YmUlMjBodHRwcyUzQSUyRiUyRnd3dy5nb29nbGVhcGlzLmNvbSUyRmF1dGglMkZ1c2VyaW5mby5wcm9maWxlJTIwaHR0cHMlM0ElMkYlMkZ3d3cuZ29vZ2xlYXBpcy5jb20lMkZhdXRoJTJGdXNlcmluZm8uZW1haWwlMjBodHRwcyUzQSUyRiUyRnd3dy5nb29nbGVhcGlzLmNvbSUyRmF1dGglMkZtdXNpYyZjbGllbnRfaWQ9NzY3ODI3OTIzMDI3LWhna2phZmpiamkxMnVydXZsaTV0OXFsbWRhdGtwdjIyLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tJnJlZGlyZWN0X3VyaT1odHRwcyUzQSUyRiUyRmFwaS5mZm0udG8lMkZ3ZWJob29rJTJGeW91dHViZSUyRmF1dGhvcml6ZSIsInNydmMiOiJ5b3V0dWJlbXVzaWMiLCJwcm9kdWN0Ijoic21hcnRsaW5rIiwic2hvcnRJZCI6IndoZW4td2lsbC13ZS11bml0ZSIsImlzQXV0aG9yaXphdGlvblJlcXVpcmVkIjp0cnVlLCJvd25lciI6IjVjNTBiNTFkMTQwMDAwMTkwMDY4Njg5MSIsInRlbmFudCI6IjVkMmMyOTYzZjBkNTFlZWJkMjRlNzc4NyIsImFyIjoiNmFiYzc5OTcyZDAwMDAzYjAwNzJkMDYwIiwiaXNTaG9ydExpbmsiOmZhbHNlLCJuYXRpdmUiOmZhbHNlfQ"
+                        aria-label="When Will We Unite on YouTube"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span
+                          class="music-platform-icon"
+                          style="
+                            --icon-mask: url(&quot;./icon/youtube-white.png&quot;);
+                          "
+                          aria-hidden="true"
+                        ></span>
+                      </a>
+                      <a
+                        href="https://downloads.wengtechno.com/WENG%20-%20When%20Will%20We%20Unite%20(Original%20Mix)%20MASTER.wav"
+                        aria-label="Download When Will We Unite"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span
+                          class="music-platform-icon music-platform-icon--download"
+                          style="
+                            --icon-mask: url(&quot;./icon/download-white.png&quot;);
+                          "
+                          aria-hidden="true"
+                        ></span>
+                      </a>
+                    </div>
+                  </div>
+                </article>
+                <!-- <article class="music-release">
+                  <img
+                    class="music-release-cover"
+                    src="./image/music/when%20will%20we%20unite.png"
+                    alt="When Will We Unite cover art"
+                  />
+                  <div class="music-release-info">
+                    <h3 class="music-release-title">WHen Will We Unite</h3>
+                    <p class="music-release-description">
+                      An emotional schranz journey about two lovers separated by
+                      distance but longing to be together.
+                    </p>
+                    <div
+                      class="music-platforms"
+                      aria-label="Listen to When Will We Unite"
+                    >
+                      <a href="#" aria-label="When Will We Unite on Spotify">
+                        <img
+                          src="./icon/spotify-white.png"
+                          alt=""
+                          class="music-platform-icon"
+                        />
+                      </a>
+                      <a
+                        href="#"
+                        aria-label="When Will We Unite on Apple Music"
+                      >
+                        <img
+                          src="./icon/apple-music-white.png"
+                          alt=""
+                          class="music-platform-icon music-platform-icon--apple"
+                        />
+                      </a>
+                      <a href="#" aria-label="When Will We Unite on SoundCloud">
+                        <img
+                          src="./icon/soundcloud-white.png"
+                          alt=""
+                          class="music-platform-icon"
+                        />
+                      </a>
+                      <a href="#" aria-label="When Will We Unite on YouTube">
+                        <img
+                          src="./icon/youtube-white.png"
+                          alt=""
+                          class="music-platform-icon"
+                        />
+                      </a>
+                      <a href="#" aria-label="Download When Will We Unite">
+                        <img
+                          src="./icon/download-white.png"
+                          alt=""
+                          class="music-platform-icon music-platform-icon--download"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </article> -->
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="listen" class="content-section" aria-label="Music">
-        <h2>02 — Music</h2>
-        <div class="listen-grid">
-          <article class="listen-item">
-            <iframe
-              data-testid="embed-iframe"
-              style="border-radius: 12px"
-              src="https://open.spotify.com/embed/track/4hzuXe5DjKI2OWJsI3U3Za?utm_source=generator&theme=0&si=37a8261462ce45d5"
-              width="100%"
-              height="152"
-              frameborder="0"
-              allowfullscreen=""
-              allow="
-                autoplay;
-                clipboard-write;
-                encrypted-media;
-                fullscreen;
-                picture-in-picture;
-              "
-              loading="lazy"
-            ></iframe>
-            <a
-              class="download-button"
-              href="https://downloads.wengtechno.com/WENG%20-%20Winter%20Wind%20(Original%20Mix)%20MASTER.wav"
+      <section id="live" class="content-section" aria-label="Live shows">
+        <div class="live-content">
+          <div class="live-toggle" role="group" aria-label="Show category">
+            <button
+              type="button"
+              data-show-view="live-sets"
+              aria-pressed="true"
             >
-              Download WAV
-            </a>
-          </article>
-          <!-- <article class="listen-item">
-            <iframe
-              data-testid="embed-iframe"
-              style="border-radius: 12px"
-              src="https://open.spotify.com/embed/track/02eAjcQ8p9WZ0CVf66z5Ra?utm_source=generator&si=fc98877e7a6343b6"
-              width="100%"
-              height="152"
-              frameborder="0"
-              allowfullscreen=""
-              allow="
-                autoplay;
-                clipboard-write;
-                encrypted-media;
-                fullscreen;
-                picture-in-picture;
-              "
-              loading="lazy"
-            ></iframe>
-            <a
-              class="download-button"
-              href="https://downloads.wengtechno.com/WENG%20-%20When%20Will%20We%20Unite%20(Original%20Mix)%20MASTER.wav"
+              Live Sets
+            </button>
+            <span class="live-toggle-divider" aria-hidden="true">|</span>
+            <button
+              type="button"
+              data-show-view="past-shows"
+              aria-pressed="false"
             >
-              Download WAV
-            </a>
-          </article> -->
-        </div>
-      </section>
-
-      <section id="live" class="content-section" aria-label="Live">
-        <h2>03 — Live</h2>
-        <article>
-          <h3>Featured Set</h3>
-          <div class="video-shell">
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/M49pLhAA0HI?si=0K43lQXfJ0upbq7y"
-              title="YouTube video player"
-              frameborder="0"
-              allow="
-                accelerometer;
-                autoplay;
-                clipboard-write;
-                encrypted-media;
-                gyroscope;
-                picture-in-picture;
-                web-share;
-              "
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
+              Past Shows
+            </button>
           </div>
-        </article>
-        <br />
-        <div>
-          <h3>Past Shows</h3>
+
+          <div class="live-panel" data-show-panel="live-sets">
+            <div
+              class="live-set-grid"
+              data-live-sets
+              role="region"
+              aria-label="Live sets"
+              aria-live="polite"
+            >
+              <p class="show-list-status">Loading live sets…</p>
+            </div>
+          </div>
+
           <div
-            class="live-carousel"
-            data-cards-src="data/all-shows.json"
-            aria-label="Live cards"
+            class="show-list"
+            data-show-panel="past-shows"
+            hidden
+            role="region"
+            aria-label="Past shows"
+            aria-live="polite"
             tabindex="0"
           >
-            <p>Loading cards…</p>
+            <p class="show-list-status">Loading shows…</p>
           </div>
         </div>
       </section>
 
       <section
         id="booking"
-        class="content-section"
+        class="content-section split-background"
         aria-labelledby="booking-title"
       >
-        <h2>04 — Contact</h2>
-        <h4 class="booking-title">
-          Booking & Collaboration:
-          <a
-            class="booking-email"
-            href="mailto:weng.techno@proton.me"
-            data-track="booking-email"
-          >
-            <img src="icon/mail.png" alt="" class="booking-email-icon" />
-            weng.techno@proton.me
-          </a>
-        </h4>
+        <div
+          class="booking-panel booking-panel--content split-background__panel split-background__panel--left"
+        >
+          <div class="booking-content">
+            <h2 id="booking-title">Contact</h2>
+            <p class="booking-label">Booking &amp; Collab:</p>
+            <a
+              class="booking-email gold-gradient-text"
+              href="mailto:weng.techno@proton.me"
+              data-track="booking-email"
+            >
+              weng.techno@proton.me
+            </a>
+          </div>
+        </div>
+        <div
+          class="booking-panel booking-panel--image split-background__panel split-background__panel--right"
+          aria-hidden="true"
+        ></div>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <img
-        class="footer-mark"
-        src="reference-image/logo-transparent.png"
-        alt="WENG"
-      />
-    </footer>
 
     <script src="script.js" defer></script>
   </body>
