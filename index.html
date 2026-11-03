@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -47,8 +47,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..900&family=Della+Respira&display=swap"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="./image/background/home.JPG"
+      fetchpriority="high"
     />
     <link rel="stylesheet" href="styles.css" />
     <script type="application/ld+json">
@@ -74,7 +80,12 @@
   <body id="top">
     <header class="site-nav" aria-label="Primary navigation">
       <a class="nav-mark" href="#top" aria-label="WENG home">
-        <img src="./image/logo-transparent.png" alt="WENG logo" />
+        <img
+          src="./image/logo-transparent.png"
+          alt="WENG logo"
+          width="42"
+          height="42"
+        />
       </a>
       <button
         class="nav-menu-toggle"
@@ -83,7 +94,7 @@
         aria-expanded="false"
         aria-controls="primary-navigation"
       >
-        <img src="./icon/menu-white.png" alt="" />
+        <img src="./icon/menu-white.png" alt="" width="24" height="24" />
       </button>
       <nav id="primary-navigation">
         <a href="#about">About</a>
@@ -116,20 +127,21 @@
                 channels the emotional depth and darkness of these influences
                 into her music.
               </p>
-              <div class="about-social" aria-label="Social links">
+              <div class="about-social" role="group" aria-label="Social links">
                 <a
                   href="https://www.youtube.com/channel/UCwphUlFFtzge_2PGuWzeAfA"
                   data-track="about-youtube"
                   class="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="YouTube"
                 >
                   <span
                     class="social-icon"
                     style="--icon-mask: url(&quot;icon/youtube-white.png&quot;)"
                     aria-hidden="true"
                   ></span>
-                  <h4>Youtube</h4>
+                  <span class="social-link-label">Youtube</span>
                 </a>
                 <a
                   href="https://open.spotify.com/artist/5yDn9s7rh5MhnkVrGus3yS?si=4GYKFMDGSzi11XfZP3-YUA"
@@ -137,13 +149,14 @@
                   class="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Spotify"
                 >
                   <span
                     class="social-icon"
                     style="--icon-mask: url(&quot;icon/spotify-white.png&quot;)"
                     aria-hidden="true"
                   ></span>
-                  <h4>Spotify</h4>
+                  <span class="social-link-label">Spotify</span>
                 </a>
                 <a
                   href="https://soundcloud.com/wengtechno"
@@ -151,6 +164,7 @@
                   class="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="SoundCloud"
                 >
                   <span
                     class="social-icon"
@@ -159,7 +173,7 @@
                     "
                     aria-hidden="true"
                   ></span>
-                  <h4>SoundCloud</h4>
+                  <span class="social-link-label">SoundCloud</span>
                 </a>
                 <a
                   href="https://www.instagram.com/weng.techno/"
@@ -167,6 +181,7 @@
                   class="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Instagram"
                 >
                   <span
                     class="social-icon"
@@ -175,7 +190,7 @@
                     "
                     aria-hidden="true"
                   ></span>
-                  <h4>Instagram</h4>
+                  <span class="social-link-label">Instagram</span>
                 </a>
                 <a
                   href="https://www.tiktok.com/@weng.techno"
@@ -183,13 +198,14 @@
                   class="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="TikTok"
                 >
                   <span
                     class="social-icon"
                     style="--icon-mask: url(&quot;icon/tiktok-white.png&quot;)"
                     aria-hidden="true"
                   ></span>
-                  <h4>Tiktok</h4>
+                  <span class="social-link-label">Tiktok</span>
                 </a>
               </div>
             </div>
@@ -227,6 +243,8 @@
                     class="music-release-cover"
                     src="./image/music/winter%20wind.jpg"
                     alt="Winter Wind cover art"
+                    width="300"
+                    height="300"
                   />
                   <div class="music-release-info">
                     <h3 class="music-release-title">Winter Wind</h3>
@@ -236,6 +254,7 @@
                     </p>
                     <div
                       class="music-platforms"
+                      role="group"
                       aria-label="Listen to Winter Wind"
                     >
                       <a
@@ -317,6 +336,8 @@
                     class="music-release-cover"
                     src="./image/music/when%20will%20we%20unite.png"
                     alt="When Will We Unite cover art"
+                    width="300"
+                    height="300"
                   />
                   <div class="music-release-info">
                     <h3 class="music-release-title">WHen Will We Unite</h3>
@@ -326,6 +347,7 @@
                     </p>
                     <div
                       class="music-platforms"
+                      role="group"
                       aria-label="Listen to When Will We Unite"
                     >
                       <a

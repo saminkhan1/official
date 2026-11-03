@@ -141,15 +141,19 @@ async function loadLiveSets(showList) {
       throw new Error(`${source} must contain at least one live set`)
     }
 
-    const cards = liveSets.map((liveSet) => {
-      if (
-        typeof liveSet.title !== "string" ||
-        typeof liveSet.image !== "string" ||
-        typeof liveSet.youtube !== "string"
-      ) {
-        throw new Error(`${source} contains a live set with missing details`)
-      }
+    const validSets = liveSets.filter(
+      (set) =>
+        set &&
+        typeof set.title === "string" &&
+        typeof set.image === "string" &&
+        typeof set.youtube === "string",
+    )
 
+    if (validSets.length === 0) {
+      throw new Error(`No valid live sets found in ${source}`)
+    }
+
+    const cards = validSets.map((liveSet) => {
       const card = document.createElement("a")
       card.className = "live-set-card"
       card.href = liveSet.youtube
@@ -173,6 +177,8 @@ async function loadLiveSets(showList) {
       icon.className = "live-card-youtube-icon"
       icon.src = "icon/youtube-white.png"
       icon.alt = ""
+      icon.width = 21
+      icon.height = 21
 
       const youtubeIcon = document.createElement("span")
       youtubeIcon.className = "live-set-youtube"
