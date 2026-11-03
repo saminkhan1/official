@@ -1,6 +1,42 @@
 const showViewButtons = document.querySelectorAll("[data-show-view]")
 const showPanels = document.querySelectorAll("[data-show-panel]")
 
+const siteNav = document.querySelector(".site-nav")
+const navMenuToggle = document.querySelector(".nav-menu-toggle")
+const primaryNavigation = document.querySelector("#primary-navigation")
+
+function closeMobileNavigation() {
+  siteNav?.classList.remove("is-open")
+  navMenuToggle?.setAttribute("aria-expanded", "false")
+  navMenuToggle?.setAttribute("aria-label", "Open navigation")
+}
+
+navMenuToggle?.addEventListener("click", () => {
+  const isExpanded = navMenuToggle.getAttribute("aria-expanded") === "true"
+  navMenuToggle.setAttribute("aria-expanded", String(!isExpanded))
+  navMenuToggle.setAttribute(
+    "aria-label",
+    isExpanded ? "Open navigation" : "Close navigation",
+  )
+  siteNav?.classList.toggle("is-open", !isExpanded)
+})
+
+primaryNavigation?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", closeMobileNavigation)
+})
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeMobileNavigation()
+  }
+})
+
+window.matchMedia("(min-width: 881px)").addEventListener("change", (event) => {
+  if (event.matches) {
+    closeMobileNavigation()
+  }
+})
+
 showViewButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const activeView = button.dataset.showView

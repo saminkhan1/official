@@ -48,7 +48,16 @@
       <a class="nav-mark" href="#top" aria-label="WENG home">
         <img src="./image/logo-transparent.png" alt="WENG logo" />
       </a>
-      <nav>
+      <button
+        class="nav-menu-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+      >
+        <img src="./icon/menu-white.png" alt="" />
+      </button>
+      <nav id="primary-navigation">
         <a href="#about">About</a>
         <a href="#listen">Music</a>
         <a href="#live">Shows</a>
@@ -173,6 +182,7 @@
             class="music-panel music-panel--content split-background__panel split-background__panel--right"
           >
             <div class="music-content">
+              <h2 id="music-title" class="music-title">Music</h2>
               <div
                 class="music-releases"
                 role="region"
