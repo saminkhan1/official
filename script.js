@@ -121,10 +121,12 @@ async function loadPastShows(showList) {
     showList.replaceChildren(...rows)
   } catch (error) {
     console.error(`Unable to load all shows from ${source}.`, error)
-    const status = document.createElement("p")
-    status.className = "show-list-status"
-    status.textContent = "All shows are currently unavailable."
-    showList.replaceChildren(status)
+    if (!showList.querySelector(".show-row")) {
+      const status = document.createElement("p")
+      status.className = "show-list-status"
+      status.textContent = "All shows are currently unavailable."
+      showList.replaceChildren(status)
+    }
   }
 }
 
@@ -192,10 +194,12 @@ async function loadLiveSets(showList) {
     showList.replaceChildren(...cards)
   } catch (error) {
     console.error(`Unable to load live sets from ${source}.`, error)
-    const status = document.createElement("p")
-    status.className = "show-list-status"
-    status.textContent = "Live sets are currently unavailable."
-    showList.replaceChildren(status)
+    if (!showList.querySelector(".live-set-card")) {
+      const status = document.createElement("p")
+      status.className = "show-list-status"
+      status.textContent = "Live sets are currently unavailable."
+      showList.replaceChildren(status)
+    }
   }
 }
 

@@ -54,19 +54,76 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "MusicGroup",
-        "name": "WENG",
-        "url": "https://wengtechno.com/",
-        "genre": ["Hard Techno", "Techno", "Schranz"],
-        "description": "Schranz & Hard techno DJ and producer.",
-        "image": "https://wengtechno.com/image/background/home.JPG",
-        "email": "weng.techno@proton.me",
-        "sameAs": [
-          "https://www.instagram.com/weng.techno/",
-          "https://open.spotify.com/artist/5yDn9s7rh5MhnkVrGus3yS",
-          "https://soundcloud.com/wengtechno",
-          "https://www.youtube.com/channel/UCwphUlFFtzge_2PGuWzeAfA",
-          "https://www.tiktok.com/@weng.techno"
+        "@graph": [
+          {
+            "@type": "MusicGroup",
+            "@id": "https://wengtechno.com/#artist",
+            "name": "WENG",
+            "legalName": "Xin Weng",
+            "alternateName": ["WENG (2)", "DJ WENG"],
+            "url": "https://wengtechno.com/",
+            "image": "https://wengtechno.com/image/background/home.JPG",
+            "description": "WENG is a Canadian Schranz and Hard Techno DJ and producer based in Toronto. Combining classical piano roots and heavy metal influences with aggressive, industrial electronic soundscapes.",
+            "genre": ["Hard Techno", "Schranz", "Industrial Techno"],
+            "homeLocation": {
+              "@type": "Place",
+              "name": "Toronto, Ontario, Canada"
+            },
+            "email": "weng.techno@proton.me",
+            "sameAs": [
+              "https://ra.co/dj/weng-2",
+              "https://open.spotify.com/artist/5yDn9s7rh5MhnkVrGus3yS",
+              "https://music.apple.com/artist/weng/6783435284",
+              "https://soundcloud.com/wengtechno",
+              "https://www.youtube.com/channel/UCwphUlFFtzge_2PGuWzeAfA",
+              "https://www.instagram.com/weng.techno/",
+              "https://www.tiktok.com/@weng.techno",
+              "https://github.com/wengtechno"
+            ],
+            "knowsAbout": [
+              "Schranz",
+              "Hard Techno",
+              "Industrial Techno",
+              "Classical Piano",
+              "Electronic Music Production",
+              "Artificial Intelligence"
+            ]
+          },
+          {
+            "@type": "Person",
+            "@id": "https://wengtechno.com/#person",
+            "name": "Xin Weng",
+            "alternateName": "WENG",
+            "jobTitle": "Artificial Intelligence Researcher & Music Producer",
+            "description": "AI researcher by day and underground hard techno DJ/producer by night.",
+            "url": "https://wengtechno.com/",
+            "sameAs": [
+              "https://ra.co/dj/weng-2",
+              "https://github.com/wengtechno"
+            ]
+          },
+          {
+            "@type": "MusicRecording",
+            "@id": "https://wengtechno.com/#recording-when-will-we-unite",
+            "name": "When Will We Unite",
+            "byArtist": {
+              "@id": "https://wengtechno.com/#artist"
+            },
+            "genre": ["Hard Techno", "Schranz"],
+            "url": "https://soundcloud.com/wengtechno",
+            "encodingFormat": "audio/wav",
+            "audio": "https://downloads.wengtechno.com/WENG%20-%20When%20Will%20We%20Unite%20(Original%20Mix)%20MASTER.wav"
+          },
+          {
+            "@type": "MusicRecording",
+            "@id": "https://wengtechno.com/#recording-winter-wind",
+            "name": "Winter Wind",
+            "byArtist": {
+              "@id": "https://wengtechno.com/#artist"
+            },
+            "genre": ["Hard Techno", "Schranz"],
+            "url": "https://open.spotify.com/artist/5yDn9s7rh5MhnkVrGus3yS"
+          }
         ]
       }
     </script>
@@ -436,7 +493,110 @@
               aria-label="Live sets"
               aria-live="polite"
             >
-              <p class="show-list-status">Loading live sets…</p>
+              <a
+                class="live-set-card"
+                href="https://youtu.be/M_8uuB16OnE?si=mBlrhRR_6kDfggZK"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Sidequest on YouTube"
+              >
+                <img
+                  class="live-set-image"
+                  src="./image/shows/20261016-sidequest.JPG"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="live-set-info">
+                  <h4 class="live-set-title">
+                    <span class="live-set-youtube" aria-hidden="true">
+                      <img
+                        class="live-card-youtube-icon"
+                        src="icon/youtube-white.png"
+                        alt=""
+                      />
+                    </span>
+                    <span class="live-set-title-text">Sidequest</span>
+                  </h4>
+                </div>
+              </a>
+              <a
+                class="live-set-card"
+                href="https://youtu.be/iYjLqr7QA-0?si=HPyilNg_c3Ka9P5p"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="System on YouTube"
+              >
+                <img
+                  class="live-set-image"
+                  src="./image/shows/20260808-comfort-zone.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="live-set-info">
+                  <h4 class="live-set-title">
+                    <span class="live-set-youtube" aria-hidden="true">
+                      <img
+                        class="live-card-youtube-icon"
+                        src="icon/youtube-white.png"
+                        alt=""
+                      />
+                    </span>
+                    <span class="live-set-title-text">System</span>
+                  </h4>
+                </div>
+              </a>
+              <a
+                class="live-set-card"
+                href="https://youtu.be/M49pLhAA0HI?si=0K43lQXfJ0upbq7y"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Montreal Music Week on YouTube"
+              >
+                <img
+                  class="live-set-image"
+                  src="./image/shows/20260807-mwm.png"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="live-set-info">
+                  <h4 class="live-set-title">
+                    <span class="live-set-youtube" aria-hidden="true">
+                      <img
+                        class="live-card-youtube-icon"
+                        src="icon/youtube-white.png"
+                        alt=""
+                      />
+                    </span>
+                    <span class="live-set-title-text">Montreal Music Week</span>
+                  </h4>
+                </div>
+              </a>
+              <a
+                class="live-set-card"
+                href="https://youtu.be/Q3ZmSiKK0mc?si=u56HswKwvxc4-ZWc"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Overture Studio on YouTube"
+              >
+                <img
+                  class="live-set-image"
+                  src="./image/shows/20260704-overture.jpg"
+                  alt=""
+                  loading="lazy"
+                />
+                <div class="live-set-info">
+                  <h4 class="live-set-title">
+                    <span class="live-set-youtube" aria-hidden="true">
+                      <img
+                        class="live-card-youtube-icon"
+                        src="icon/youtube-white.png"
+                        alt=""
+                      />
+                    </span>
+                    <span class="live-set-title-text">Overture Studio</span>
+                  </h4>
+                </div>
+              </a>
             </div>
           </div>
 
@@ -449,7 +609,51 @@
             aria-live="polite"
             tabindex="0"
           >
-            <p class="show-list-status">Loading shows…</p>
+            <article class="show-row">
+              <time class="show-date" datetime="2026-12-10">dec 10, 2026</time>
+              <p class="show-location">worldwide</p>
+              <p class="show-title">GVC Radio</p>
+            </article>
+            <article class="show-row">
+              <time class="show-date" datetime="2026-12-05">dec 5, 2026</time>
+              <p class="show-location">toronto, canada</p>
+              <p class="show-title">Merry Bassmas</p>
+            </article>
+            <article class="show-row">
+              <time class="show-date" datetime="2026-11-18">nov 18, 2026</time>
+              <p class="show-location">worldwide</p>
+              <p class="show-title">Ratforce Radio</p>
+            </article>
+            <article class="show-row">
+              <time class="show-date" datetime="2026-11-12">nov 12, 2026</time>
+              <p class="show-location">toronto, canada</p>
+              <p class="show-title">iDigital Sounds</p>
+            </article>
+            <article class="show-row">
+              <time class="show-date" datetime="2026-10-31">oct 31, 2026</time>
+              <p class="show-location">toronto, canada</p>
+              <p class="show-title">Nightmare on Spadina</p>
+            </article>
+            <article class="show-row">
+              <time class="show-date" datetime="2026-10-16">oct 16, 2026</time>
+              <p class="show-location">montreal, canada</p>
+              <p class="show-title">Sidequest</p>
+            </article>
+            <article class="show-row">
+              <time class="show-date" datetime="2026-08-29">aug 29, 2026</time>
+              <p class="show-location">toronto, canada</p>
+              <p class="show-title">FOM</p>
+            </article>
+            <article class="show-row">
+              <time class="show-date" datetime="2026-08-08">aug 8, 2026</time>
+              <p class="show-location">toronto, canada</p>
+              <p class="show-title">System</p>
+            </article>
+            <article class="show-row">
+              <time class="show-date" datetime="2026-08-07">aug 7, 2026</time>
+              <p class="show-location">montreal, canada</p>
+              <p class="show-title">Montreal Music Week</p>
+            </article>
           </div>
         </div>
       </section>
