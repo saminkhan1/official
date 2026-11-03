@@ -1,8 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Della+Respira&display=swap");
-
 :root {
   /* base surfaces */
   --paper: #0a0a09;
@@ -54,13 +49,21 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: var(--paper) url("reference-image/background-horizontal.png")
+  background: var(--paper) url("./image/background-horizontal.webp")
     center / min(100vw, var(--max)) auto fixed no-repeat;
+  background-image: image-set(
+    url("./image/background-horizontal.webp") type("image/webp"),
+    url("./image/background-horizontal.png") type("image/png")
+  );
   font-family: "Della Respira", Georgia, serif;
   font-weight: 300;
   font-size: clamp(1rem, 1vw, 1.1rem);
   letter-spacing: 0.08em;
   text-rendering: optimizeLegibility;
+}
+
+body.nav-is-open {
+  overflow: hidden;
 }
 
 img,
@@ -122,7 +125,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0rem var(--gutter);
+  padding: 0 var(--gutter);
   background: #000;
   border-bottom: 0;
   font-family: "Cinzel Decorative", Georgia, serif;
@@ -217,18 +220,6 @@ main a:hover {
   min-height: 100svh;
 }
 
-.split-background--reverse {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
-}
-
-.split-background--reverse .split-background__panel--left {
-  grid-column: 2;
-}
-
-.split-background--reverse .split-background__panel--right {
-  grid-column: 1;
-}
-
 .split-background__panel {
   position: relative;
   isolation: isolate;
@@ -256,7 +247,7 @@ main a:hover {
 }
 
 #about.content-section {
-  --split-right-background: url("./image/background/home.JPG");
+  --split-right-background: url("./image/background/home.webp");
   --split-right-opacity: 1;
   width: 100%;
   max-width: none;
@@ -296,7 +287,7 @@ main a:hover {
 }
 
 #listen.content-section {
-  --split-left-background: url("./image/background/music.JPG");
+  --split-left-background: url("./image/background/music.webp");
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
   width: 100%;
   max-width: none;
@@ -499,73 +490,6 @@ main a:hover {
   background: var(--gold-gradient-horizontal);
 }
 
-.portrait-frame {
-  width: 90%;
-  position: relative;
-  margin: 0;
-}
-
-.portrait-frame::before {
-  position: absolute;
-  inset: 8% -7% -6% 14%;
-  z-index: -1;
-  content: "";
-  background: var(--paper-raised);
-  filter: blur(18px);
-  transform: rotate(-7deg);
-}
-
-.portrait-frame img {
-  height: auto;
-}
-
-.listen-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-.listen-item {
-  display: grid;
-  width: 100%;
-  grid-template-columns: minmax(0, 5fr) minmax(5rem, 1fr);
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.download-button {
-  position: relative;
-  display: inline-flex;
-  justify-self: end;
-  align-items: center;
-  justify-content: center;
-  font-family: "Cinzel", Georgia, serif;
-  font-weight: 400;
-  color: var(--ink);
-  text-align: center;
-  transition: color 180ms ease;
-}
-
-.download-button:hover {
-  color: var(--ink);
-}
-
-.download-button:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
-}
-
-.video-shell {
-  aspect-ratio: 16 / 9;
-  border: 1px solid var(--line);
-}
-
-.video-shell iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
 #live.content-section {
   width: 100%;
   max-width: none;
@@ -592,12 +516,13 @@ main a:hover {
   padding: 0;
   border: 0;
   background: none;
-  color: #646464;
+  color: #767676;
   cursor: pointer;
   font: inherit;
   transition: color 180ms ease;
 }
 
+.live-toggle button[aria-selected="true"],
 .live-toggle button[aria-pressed="true"],
 .live-toggle button:hover,
 .live-toggle button:focus-visible {
@@ -725,9 +650,9 @@ main a.live-set-card:hover {
 }
 
 #booking.content-section {
-  --split-left-background: url("./image/background/weng.png");
+  --split-left-background: url("./image/background/weng.webp");
   --split-left-opacity: 0.1;
-  --split-right-background: url("./image/background/contact.JPG");
+  --split-right-background: url("./image/background/contact.webp");
   width: 100%;
   max-width: none;
   min-height: calc(100svh - 4rem);
@@ -832,13 +757,10 @@ main a.live-set-card:hover {
     outline: 2px solid var(--ink);
     outline-offset: 2px;
   }
-  .section-heading,
-  .listen-grid,
   .booking-panel {
     grid-template-columns: 1fr;
   }
-  .split-background,
-  .split-background--reverse {
+  .split-background {
     grid-template-columns: 1fr;
   }
   #listen.content-section {
@@ -876,10 +798,6 @@ main a.live-set-card:hover {
   .about-panel--right {
     grid-column: 1;
   }
-  .split-background--reverse .split-background__panel--left,
-  .split-background--reverse .split-background__panel--right {
-    grid-column: 1;
-  }
   .about-panel--left {
     grid-row: 2;
     min-height: 0;
@@ -909,14 +827,9 @@ main a.live-set-card:hover {
     max-height: none;
     overflow: visible;
   }
-  .listen-item {
-    grid-template-columns: 1fr;
-  }
-
   .about-panel--left {
     padding-block: clamp(6rem, 10vw, 8rem);
   }
-
   .music-panel--content,
   #live.content-section,
   .booking-panel--content {
