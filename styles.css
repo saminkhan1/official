@@ -56,9 +56,10 @@ body {
   color: var(--ink);
   background: var(--paper) url("reference-image/background-horizontal.png")
     center / cover fixed no-repeat;
-  font-family: "Nunito Sans", Arial, sans-serif;
+  font-family: "Della Respira", Georgia, serif;
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
   text-rendering: optimizeLegibility;
 }
 
@@ -83,12 +84,14 @@ h1 {
 h2 {
   font-family: "Cinzel Decorative", Georgia, serif;
   font-weight: 700;
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 2rem);
+  margin: 0 0 3rem;
 }
 
 h3 {
-  font-family: "Cinzel", Georgia, serif;
-  font-weight: 500;
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
   color: var(--ink);
 }
 
@@ -244,7 +247,7 @@ main a:hover {
   --split-left-background: url("./image/background/weng.png");
   --split-left-opacity: 0.1;
   --split-right-background: url("./image/background/home.JPG");
-  --split-right-opacity: 0.6;
+  --split-right-opacity: 1;
   width: 100%;
   max-width: none;
   padding: 0;
@@ -281,6 +284,120 @@ main a:hover {
   grid-column: 2;
 }
 
+#listen.content-section {
+  --split-left-background: url("./image/background/music.JPG");
+  --split-right-background: url("./image/background/weng.png");
+  --split-right-opacity: 0.08;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin-top: calc(-1 * clamp(24px, 2vw, 40px));
+}
+
+.music-grid {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: stretch;
+}
+
+.music-panel {
+  display: flex;
+  min-width: 0;
+  padding: clamp(2rem, 5vw, 5rem);
+}
+
+.music-panel--image {
+  grid-column: 1;
+}
+
+.music-panel--content {
+  grid-column: 2;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-content {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 55rem);
+}
+
+.music-releases {
+  display: grid;
+  gap: 2rem;
+  max-height: min(65svh, 42rem);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+.music-release {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.65fr);
+  align-items: center;
+}
+
+.music-release-cover {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.music-release-info {
+  min-width: 0;
+  padding: clamp(1rem, 2.2vw, 2rem);
+}
+
+.music-release-title {
+  margin: 0 0 0.8rem;
+}
+
+.music-release-description {
+  margin: 0 0 1.5rem;
+}
+
+.music-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+#listen a::after {
+  display: none;
+}
+
+.music-platforms a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  min-height: 1.75rem;
+}
+
+.music-platforms a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.music-platform-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+  transition: opacity 180ms ease;
+}
+
+.music-platform-icon--download {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.music-platforms a:hover .music-platform-icon {
+  opacity: 0.7;
+}
+
 .about-panel h1 {
   margin: 0 0 2rem;
 }
@@ -307,9 +424,6 @@ main a:hover {
 .about-description {
   max-width: 34rem;
   margin: 0 0 1.5rem;
-  font-family: "Della Respira", Georgia, serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.08em;
 }
 
 .about-social {
@@ -570,6 +684,9 @@ main a:hover {
   .split-background--reverse {
     grid-template-columns: 1fr;
   }
+  #listen.content-section {
+    grid-template-columns: 1fr;
+  }
   .about-panel--left,
   .about-panel--right {
     grid-column: 1;
@@ -583,6 +700,13 @@ main a:hover {
   }
   .about-panel--right {
     min-height: 50svh;
+  }
+  .music-panel--image,
+  .music-panel--content {
+    grid-column: 1;
+  }
+  .music-panel--image {
+    min-height: 65svh;
   }
   .listen-item {
     grid-template-columns: 1fr;
